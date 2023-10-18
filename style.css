@@ -1,0 +1,51 @@
+/** Observaões:
+Prefira rem a outras medidas, rem é escalar por isso é melhor para celulares
+Quando for fazer alguma estranha, ou dificil de compreender explique
+Para instruir trabalho a ser feito use TODO
+**/
+
+.initial_header {
+	display: block;
+	/**Isso vai fazer o header ser um header **/
+	position: relative;
+	z-index: 1;
+	/*cores*/
+	background-color: pink;
+	color: white;
+
+	height: 2.3rem;
+	width: 100vw;
+}
+.option {
+	padding-top: 0.5rem;
+	display: inline-block;
+	/**TODO: Deve ter um jeito melhor de aumentar o tamanho do div criança para o div pai **/
+	height: 1.8rem;
+}
+
+.option:hover {
+	background-color: blueviolet;
+}
+
+.welcome {
+	font-size: 2rem;
+	background-color: lightgreen;
+	/**TODO: Não esta criando uma borda**/
+	box-sizing: border-box;
+	border-color: red;
+	border-width: 100rem;
+	width: 50%;
+
+	margin-top: 3rem;
+	margin-left: 25%;
+
+	padding: 4rem;
+
+	position: relative;
+
+}
+
+html {
+	background-color: lightblue;
+	box-sizing: border-box;
+}
