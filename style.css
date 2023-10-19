@@ -45,7 +45,24 @@ Para instruir trabalho a ser feito use TODO
 
 }
 
+.list_of_products {
+	list-style-type: disc;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.product {
+	display: inline-block;
+	background-color: white;
+}
+
 html {
 	background-color: lightblue;
 	box-sizing: border-box;
+}
+
+.product_image {
+	max-width: 30%;
+	max-height: 30%;
 }
