@@ -10,23 +10,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
 	id Int @id @default(autoincrement())
-	email String @unique
-	name String? 
+	name String
 	password String
-	favorites Product[]
+	email String @unique
+	favorites product[]
+	bought_products bought_product[]
 }
 
-model Product {
+model product {
+	id Int @id @default(autoincrement())
+	name String
+	price Int 
+	desc String
+	favorited_by user[]
+	bought bought_product[]
+	categories category[]
+	rating Int 
+}
+
+model bought_product {
+	id Int @id @default(autoincrement())
+	user user @relation(fields: [user_id], references: [id])
+	product product @relation(fields: [product_id], references: [id])
+	user_id Int
+	product_id Int
+	bought_in DateTime
+}
+
+model category {
 	id Int @id @default(autoincrement())
 	name String
 	desc String
-	price Float
-	//Esse atributo cria uma conexão com o user, um user pode ter multiplos produtos
-	user User? @relation(fields: [userId], references: [id])
-	userId Int?
-	
+	products product[]
 }
-
-
