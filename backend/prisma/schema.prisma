@@ -17,11 +17,12 @@ model user {
 	email String @unique
 	favorites product[]
 	bought_products bought_product[]
+	
 }
 
 model product {
 	id Int @id @default(autoincrement())
-	name String
+	name String @unique
 	price Int 
 	desc String
 	favorited_by user[]

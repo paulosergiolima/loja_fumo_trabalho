@@ -3,4 +3,3 @@ node_modules
 .env
 #keep my jsconfig out of their diry hands
 jsconfig.json
-prisma/migrations
