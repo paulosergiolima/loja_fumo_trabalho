@@ -5,18 +5,23 @@ Para instruir trabalho a ser feito use TODO
 **/
 
 .initial_header {
-	display: block;
+	/* margin-left: -200px; */
+	/* margin-right: -200px; */
 	/**Isso vai fazer o header ser um header **/
-	position: relative;
+	margin-left: -0.5rem;
+	margin-top: -0.5rem;
+	position: sticky;
 	z-index: 1;
 	/*cores*/
 	background-color: pink;
 	color: white;
 
 	height: 2.3rem;
-	width: 100vw;
+	width: 102%;
 }
 .option {
+	padding-right: 2rem;
+	padding-left: 2rem;
 	padding-top: 0.5rem;
 	display: inline-block;
 	/**TODO: Deve ter um jeito melhor de aumentar o tamanho do div criança para o div pai **/
@@ -32,8 +37,7 @@ Para instruir trabalho a ser feito use TODO
 	background-color: lightgreen;
 	/**TODO: Não esta criando uma borda**/
 	box-sizing: border-box;
-	border-color: red;
-	border-width: 100rem;
+	border: 20px double snow;
 	width: 50%;
 
 	margin-top: 3rem;
@@ -47,14 +51,19 @@ Para instruir trabalho a ser feito use TODO
 
 .list_of_products {
 	list-style-type: disc;
-	margin: 0;
-	padding: 0;
+	/* margin: 0; */
+	/* padding: 0; */
+	margin: 5rem;
 	overflow: hidden;
 }
 
 .product {
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+	overflow: auto;
 	display: inline-block;
 	background-color: white;
+	max-width: 12rem;
 }
 
 html {
@@ -63,6 +72,37 @@ html {
 }
 
 .product_image {
-	max-width: 30%;
+	max-width: 100%;
 	max-height: 30%;
+}
+
+.product_categories {
+	max-width: 100%;
+	text-align: center;
+	color: blue;
+}
+
+.product_price {
+	text-align: center;
+}
+
+.product_category {
+	text-align: center;
+	background-color: green;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 5rem;
+	display: inline-block;
+}
+
+.product_name {
+	text-align: center;
+}
+
+body {
+	overflow: auto;
+}
+
+header {
+	width: 100%;
 }
