@@ -1,5 +1,5 @@
 //req é requesiçao, res é resposta
-//TODO: Authentication 
+//TODO: Criação de novos produtos
 const { PrismaClient } = require('@prisma/client')
 const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
@@ -11,10 +11,45 @@ const prisma = new PrismaClient()
 const app = express()
 dotenv.config()
 app.use(express.json())
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const check = async function(req, res, next) {
+	let jwtSecretKey = process.env.JWT_SECRET_KEY;
+
+	try {
+		const token = req.headers.authorization.split(' ')[1] 
+		const verified = jwt.verify(token, jwtSecretKey)
+		console.log(verified)
+		if(verified) {
+			user = await prisma.user.findFirstOrThrow({
+				where: {
+					email: verified.email
+				}
+			})
+			req.body.user = verified.userEmail
+		}else {
+			throw Error
+		}
+	}catch {
+		req.body.user =  null
+	}
+	next()
+}
+//Adicione os endpoints que vão precisar de autenticação(provavelmente todos excetos de post)
+app.get("/products",check)
+app.get("/product/:userName", check)
+app.get("/test", check)
+
 
 app.get("/products", async (req, res) => {
 	const products = await prisma.product.findMany()
 	res.json(products)
+})
+//test endpoint
+app.get("/test", (req,res) => {
+	console.log(req.body.user)
+	res.send(req.body.user)
 })
 app.get(`/products/:userName`,async (req, res) => {
 	const username = req.params.userName
@@ -25,51 +60,28 @@ app.get(`/products/:userName`,async (req, res) => {
 	})
 	res.json(product)
 })
-app.get(`/user`,async (req, res) => {
-	const bearer_token = req.bearer_token
-	const user = await prisma.user.findFirst({
-		where: {
-			bearer_token: bearer_token
-		}
-	})
-})
 
 //Post requests
 app.post('/user', async (req, res) => {
 	const user = await prisma.user.create({
 		data: {
-			name: req.name,
-			email: req.email,
-			password: req.password,
+			email: req.body.email,
+			password: req.body.password,
+			name: req.body.name
 
 		}
 	})
 	let jwtSecretKey = process.env.JWT_SECRET_KEY
+	console.log(jwtSecretKey)
 	let data = {
 		time: Date(),
-		userId: user.id
+		userEmail: user.email,
 	}
 	const token = jwt.sign(data, jwtSecretKey)
 	res.send(token)
 }) 
 
-const check = function(req, res, next) {
-	let tokenHeaderKey = process.env.TOKEN_HEADER_KEY
-	let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-	try {
-		const token = req.header(tokenHeaderKey)
-		const verified = jwt.verify(token, jwt)
-		if(verified) {
-			req.verified = "true"
-		}else {
-			throw Error
-		}
-	}catch {
-		req.verified = "false"
-	}
-	next()
-}
 
 const server = app.listen(port, () =>
 	console.log(`Server ready at http://localhost:${port}`)
