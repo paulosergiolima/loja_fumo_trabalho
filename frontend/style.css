@@ -29,7 +29,7 @@ Para instruir trabalho a ser feito use TODO
 }
 
 .option:hover {
-	background-color: blueviolet;
+	background-color: #F2BFFF;
 }
 
 .welcome {
@@ -66,8 +66,15 @@ Para instruir trabalho a ser feito use TODO
 	max-width: 12rem;
 }
 
+.big {
+	max-height: 20rem;
+	height: 20rem;
+	
+}
+
+
 html {
-	background-color: lightblue;
+	background-color: #BFECFF;
 	box-sizing: border-box;
 }
 
@@ -105,4 +112,11 @@ body {
 
 header {
 	width: 100%;
+}
+.user_list {
+	left: -2rem;
+	position: absolute;
+}
+.user_option:hover {
+	background-color: deeppink;
 }
