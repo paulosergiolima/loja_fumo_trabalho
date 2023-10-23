@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -6,6 +7,7 @@
 </head>
 
 <body>
+	<div class="shadow"></div>
 	<header>
 		<div class="initial_header">
 			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
@@ -56,6 +58,16 @@
 		</div>
 	</main>
 </body>
+<!-- Working on create user popup -->
+<div class="create_user" hidden id="create_user">
+	Nome <br>
+	<input type="text" name="" id="userName"> <br>
+	Email <br>
+	<input type="email" name="" id="userEmail"> <br>
+	Senha <br>
+	<input type="password" name="" id="userPassword"> <br>
+	<input type="button" value="Sumbit" onclick="createUser()">
+</div>
 
 </html>
 <script>
@@ -68,5 +80,19 @@
 	function hideUserOptions() {
 		userList.hidden = true
 		user.classList.remove("big")
+	}
+	function createUser() {
+		fetch("127.0.0.1:8080/user", {
+			method: "POST",
+			body: JSON.stringify({
+				name: document.getElementById("userName"),
+				email: document.getElementById("userEmail"),
+				password: document.getElementById("userPassword")
+			}),
+			headers: {
+				"Content-type": "apllication/json; charset=UTF-8"
+			}
+		})
+
 	}
 </script>
