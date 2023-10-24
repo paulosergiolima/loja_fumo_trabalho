@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
 const express = require("express")
 const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser')
 
 const saltRounds = 10
 const port = 3000
@@ -13,8 +14,9 @@ const prisma = new PrismaClient()
 const app = express()
 dotenv.config()
 app.use(express.json())
-const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static('frontend'))
 
 const check = async function(req, res, next) {
 	let jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -69,9 +71,9 @@ app.get('/user', async(req, res) => {
 			email: req.body.email
 		}
 	})
-	const verified =  await bcrypt.compare(req.body.password, user.password)
+	verified = bcrypt.compare(req.body.password, user.password)
 	if (!verified) {
-		res.send("Stupid car")
+		res.send("Not today")
 		return
 	}
 	const jwtSecretKey = process.env.JWT_SECRET_KEY
