@@ -4,7 +4,9 @@ const { PrismaClient } = require('@prisma/client')
 const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
 const express = require("express")
+const bcrypt = require('bcrypt');
 
+const saltRounds = 10
 const port = 3000
 
 const prisma = new PrismaClient()
@@ -61,21 +63,53 @@ app.get(`/products/:userName`,async (req, res) => {
 	res.json(product)
 })
 
-//Post requests
-app.post('/user', async (req, res) => {
-	const user = await prisma.user.create({
-		data: {
-			email: req.body.email,
-			password: req.body.password,
-			name: req.body.name
-
+app.get('/user', async(req, res) => {
+	const user = await prisma.user.findFirst({
+		where: {
+			email: req.body.email
 		}
 	})
+	const verified =  await bcrypt.compare(req.body.password, user.password)
+	if (!verified) {
+		res.send("Stupid car")
+		return
+	}
+	const jwtSecretKey = process.env.JWT_SECRET_KEY
+	const data = {
+		time: Date(),
+		userEmail: req.body.email,
+	}
+	const token = jwt.sign(data, jwtSecretKey)
+	res.send(token)
+	return
+})
+
+//Post requests
+app.post('/user', async (req, res) => {
+	var hash_password;
+	bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
+		const user = await prisma.user.create({
+			data: {
+				email: req.body.email,
+				password: hash,
+				name: req.body.name
+
+			}
+		})
+	})
+	//const user = await prisma.user.create({
+		//	data: {
+			//		email: req.body.email,
+			//		password: hash_password,
+			//		name: req.body.name
+
+			//	}
+		//})
 	let jwtSecretKey = process.env.JWT_SECRET_KEY
 	console.log(jwtSecretKey)
 	let data = {
 		time: Date(),
-		userEmail: user.email,
+		userEmail: req.body.email,
 	}
 	const token = jwt.sign(data, jwtSecretKey)
 	res.send(token)
