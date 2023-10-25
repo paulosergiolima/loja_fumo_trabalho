@@ -51,10 +51,16 @@ app.get("/products", async (req, res) => {
 	res.json(products)
 })
 //test endpoint
-app.get("/test", (req,res) => {
+app.get("/test", async (req,res) => {
 	console.log(req.body.user)
 	res.send(req.body.user)
 })
+
+app.post(`/test`, async (req, res) => {
+	console.log(req.body)
+	res.send(req.body)
+})
+
 app.get(`/products/:userName`,async (req, res) => {
 	const username = req.params.userName
 	const product = await prisma.product.findFirst({
@@ -88,6 +94,7 @@ app.get('/user', async(req, res) => {
 
 //Post requests
 app.post('/user', async (req, res) => {
+	console.log(req.body)
 	var hash_password;
 	bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
 		const user = await prisma.user.create({
@@ -114,7 +121,8 @@ app.post('/user', async (req, res) => {
 		userEmail: req.body.email,
 	}
 	const token = jwt.sign(data, jwtSecretKey)
-	res.send(token)
+	console.log(token)
+	res.json(token)
 }) 
 
 

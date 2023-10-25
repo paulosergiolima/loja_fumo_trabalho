@@ -7,13 +7,13 @@
 </head>
 
 <body>
-	<div class="shadow"></div>
+	<div class="shadow" hidden id="shadow"></div>
 	<header>
 		<div class="initial_header">
 			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
 				User
 				<ul hidden id="user_list" class="user_list">
-					<li class="user_option">Create User</li>
+					<li class="user_option" onclick="showCreateUser()">Create User</li>
 					<li class="user_option">Log In</li>
 				</ul>
 			</div>
@@ -59,18 +59,22 @@
 	</main>
 </body>
 <!-- Working on create user popup -->
-<div class="create_user" hidden id="create_user">
-	Nome <br>
-	<input type="text" name="" id="userName"> <br>
-	Email <br>
-	<input type="email" name="" id="userEmail"> <br>
-	Senha <br>
-	<input type="password" name="" id="userPassword"> <br>
-	<input type="button" value="Sumbit" onclick="createUser()">
+<div class="create_user_container">
+	<div class="create_user" hidden id="create_user">
+		Nome <br>
+		<input type="text" name="" id="notUserName"> <br>
+		Email <br>
+		<input type="email" name="" id="userEmail"> <br>
+		Senha <br>
+		<input type="password" name="" id="userPassword"> <br>
+		<input type="button" value="Sumbit" onclick="createUser()">
+	</div>
 </div>
 
 </html>
 <script>
+	create_user = document.getElementById("create_user")
+	shadow = document.getElementById("shadow")
 	userList = document.getElementById("user_list")
 	user = document.getElementById("user")
 	function showUserOptions() {
@@ -81,18 +85,34 @@
 		userList.hidden = true
 		user.classList.remove("big")
 	}
-	function createUser() {
-		fetch("127.0.0.1:8080/user", {
+	async function createUser() {
+		const body_value = JSON.stringify({
+			name: document.getElementById("notUserName").value,
+			email: document.getElementById("userEmail").value,
+			password: document.getElementById("userPassword").value
+		})
+		console.log(body_value)
+		console.log(`${document.getElementById("notUserName").value}`)
+		console.log(`${document.getElementById("userEmail").value}`)
+		console.log(`${document.getElementById("userPassword").value}`)
+		const token = await fetch("/user", {
 			method: "POST",
 			body: JSON.stringify({
-				name: document.getElementById("userName"),
-				email: document.getElementById("userEmail"),
-				password: document.getElementById("userPassword")
+				name: document.getElementById("notUserName").value,
+				email: document.getElementById("userEmail").value,
+				password: document.getElementById("userPassword").value
 			}),
 			headers: {
-				"Content-type": "apllication/json; charset=UTF-8"
+				"Content-type": "application/json; charset=UTF-8"
 			}
 		})
+		const real_token = await token.json()
+		console.log(real_token)
+		localStorage.setItem("myToken", realToken)
 
+	}
+	function showCreateUser() {
+		shadow.hidden = false
+		create_user.hidden = false
 	}
 </script>
