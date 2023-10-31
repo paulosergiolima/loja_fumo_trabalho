@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="shadow" hidden id="shadow"></div>
+	<header>
+		<div class="initial_header">
+			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
+				User
+				<ul hidden id="user_list" class="user_list">
+					<li class="user_option" onclick="showCreateUser()">Create User</li>
+					<li class="user_option">Log In</li>
+				</ul>
+			</div>
+			<div class="option">
+				<a class="headerlink" href="index.html">Home</a>
+			</div>
+			<div class="option">
+				Categorias
+			</div>
+			<div class="option">
+				Produtos
+			</div>
+			<div class="option carrinho">
+				Carrinho
+			</div>
+		</div>
+	</header>
+	<main>
+		<h1 class="cart_title">Carrinho.</h1>
+        <div class="cart_cols">
+            <div class="cart_left">Item</div>
+            <div class="cart_right">Preço total</div>
+            <div class="cart_right">Quantidade</div>
+            <div class="cart_right">Preço individual</div>
+        </div>
+        <ul class="cart_list">
+            <!--Template de produto-->
+            <li><div class="cart_product"></div></li>
+            
+        </ul>
+	</main>
+</body>
+
+</html>
