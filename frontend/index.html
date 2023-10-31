@@ -3,6 +3,7 @@
 <html>
 
 <head>
+	<title>Fumoland</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -59,8 +60,11 @@
 	</main>
 </body>
 <!-- Working on create user popup -->
-<div class="create_user_container">
-	<div class="create_user" hidden id="create_user">
+<div hidden class="create_user_container" id="create_user_container">
+	<button class="close_button" onclick="close_create_user();">
+		<img src="cross-svgrepo-com.svg" width="20rem" height="20rem" alt="">
+	</button>
+	<div class="create_user" id="create_user">
 		Nome <br>
 		<input type="text" name="" id="notUserName"> <br>
 		Email <br>
@@ -73,7 +77,7 @@
 
 </html>
 <script>
-	create_user = document.getElementById("create_user")
+	create_user_container = document.getElementById("create_user_container")
 	shadow = document.getElementById("shadow")
 	userList = document.getElementById("user_list")
 	user = document.getElementById("user")
@@ -113,6 +117,10 @@
 	}
 	function showCreateUser() {
 		shadow.hidden = false
-		create_user.hidden = false
+		create_user_container.hidden = false
+	}
+	function close_create_user() {
+		shadow.hidden = true
+		create_user_container.hidden = true
 	}
 </script>
