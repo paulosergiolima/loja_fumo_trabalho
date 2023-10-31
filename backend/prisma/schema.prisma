@@ -21,6 +21,7 @@ model user {
 }
 
 model product {
+	img_path String
 	id Int @id @default(autoincrement())
 	name String @unique
 	price Int 
