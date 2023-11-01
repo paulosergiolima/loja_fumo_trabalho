@@ -6,17 +6,22 @@ const jwt = require('jsonwebtoken')
 const express = require("express")
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser')
+const ejs = require('ejs')
+const fs = require('fs')
 
 const saltRounds = 10
 const port = 3000
 
 const prisma = new PrismaClient()
 const app = express()
+app.set('view engine', 'ejs')
 dotenv.config()
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('frontend'))
+
+let ejsOptions = {delimiter: '?'}
 
 const check = async function(req, res, next) {
 	let jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -68,7 +73,7 @@ app.get(`/products/:userName`,async (req, res) => {
 			name: username
 		}
 	})
-	res.json(product)
+	res.render('product', {product: product})	
 })
 
 app.get('/user', async(req, res) => {
