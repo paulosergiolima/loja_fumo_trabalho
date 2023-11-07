@@ -3,10 +3,9 @@
   o nome do produto é product.name
   a descrição do produto é product.desc
   se o usuário já deu like ou dislike nesse produto é rating
-  o path da imagem é product.path
+  o path da imagem é product.img_path
   o rating do produto é product.rating
-  para inserir algum desses valores, coloque <%= (valor aqui) %>
-  exemplo <%= product.price %>, seria o preço do produto
+  para inserir algum desses valores
   
 -->
 <!DOCTYPE html>
@@ -14,7 +13,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/views/style.css">
   <title>Document</title>
 </head>
 <body>
@@ -43,11 +42,20 @@
 		</div>
 	</header>
 	<main>
-		<img src="fumo.png" alt="" class="product_image">
+		<img src="/<%= product.img_path%>" alt="" class="product_image">
 		<div class="product">
-			<div class="product_name"></div>
-			<div class="product_price"></div>
-			<div class="product_desc"></div>
+			<div class="product_name">
+				<%= product.name %>
+			</div>
+			<div class="product_price">
+				<%= product.price %>
+			</div>
+			<div class="product_desc">
+				<%= product.desc %>
+			</div>
+		</div>
+		<div class="add_to_cart">
+			Compre agora!!!!
 		</div>
 	</main>
   

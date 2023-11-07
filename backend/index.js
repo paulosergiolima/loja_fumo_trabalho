@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const fs = require('fs')
+const path = require('path')
 
 const saltRounds = 10
 const port = 3000
@@ -55,6 +56,11 @@ app.get("/products", async (req, res) => {
 	const products = await prisma.product.findMany()
 	res.json(products)
 })
+app.get("/views/style.css", async (req, res) => {
+	const opts = {root: path.basename(__dirname) + "/.."}
+	console.log(opts.root)
+	res.sendFile("views/style.css", opts)
+})
 //test endpoint
 app.get("/test", async (req,res) => {
 	console.log(req.body.user)
@@ -73,6 +79,7 @@ app.get(`/products/:userName`,async (req, res) => {
 			name: username
 		}
 	})
+	console.log(product)
 	res.render('product', {product: product})	
 })
 

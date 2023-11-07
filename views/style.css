@@ -58,12 +58,35 @@ Para instruir trabalho a ser feito use TODO
 }
 
 .product {
-	margin-left: 0.3rem;
-	margin-right: 0.3rem;
-	overflow: auto;
-	display: inline-block;
+	max-width: 15rem;
+	margin-left: 60%;
+	margin-top: 5%;
 	background-color: white;
-	max-width: 12rem;
+	padding: 4rem 4rem 2rem 4rem;
+	word-wrap: break-word;
+}
+
+.product_name {
+	overflow: visible;
+	max-width: 15rem;
+	margin-bottom: 15%;
+	font-size: 3rem;
+}
+
+.product_price {
+	overflow: auto;
+	max-width: 15rem;
+	margin-bottom: 15%;
+	font-size: 3rem;
+}
+
+.product_desc {
+	word-wrap: break-word;
+	font-size: 1.5rem;
+	overflow: auto;
+	max-width: 15rem;
+	margin-bottom: 10%;
+	
 }
 
 .big {
@@ -91,10 +114,6 @@ html {
 	color: blue;
 }
 
-.product_price {
-	text-align: center;
-}
-
 .product_category {
 	text-align: center;
 	background-color: green;
@@ -104,9 +123,6 @@ html {
 	display: inline-block;
 }
 
-.product_name {
-	text-align: center;
-}
 
 body {
 	overflow: auto;
@@ -155,3 +171,17 @@ header {
 .create_user.input {
 	width: 100vw;
 }
+
+.add_to_cart {
+	width: 15rem;
+	background-color: red;
+	float: right;
+	height: 5rem;
+	margin-top: 5%;
+	margin-right: 15%;
+	font-size: 1.7rem;
+	text-align: center;
+	vertical-align: text-bottom;
+	line-height: 5rem;
+}
+
