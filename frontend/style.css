@@ -228,12 +228,11 @@ header {
 .cart_pricebar {
 	background-color: pink;
 	width: 30rem;
-	display: block	;
-	height: 4rem;
-	margin-top: -7rem;
+	height: 7rem;
+	margin-top: -5rem;
 	margin-left: 30rem;
 }
-
+/*
 .cart_price {
 	text-align: center;
 	display: block;
@@ -247,4 +246,4 @@ header {
 .cart_total {
 	text-align: center;
 	display: block;
-}
+}*/
