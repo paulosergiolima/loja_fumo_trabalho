@@ -1,0 +1,75 @@
+<!--
+  o valor do produto é product.price
+  o nome do produto é product.name
+  a descrição do produto é product.desc
+  se o usuário já deu like ou dislike nesse produto é rating
+  o path da imagem é product.img_path
+  o rating do produto é product.rating
+  para inserir algum desses valores
+  
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/views/style.css">
+  <title>Fumoland - <%= product.name %></title>
+</head>
+<body>
+
+  <header>
+		<div class="initial_header">
+			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
+				User
+				<ul hidden id="user_list" class="user_list">
+					<li class="user_option" onclick="showCreateUser()">Create User</li>
+					<li class="user_option">Log In</li>
+				</ul>
+			</div>
+			<div class="option">
+				Produtos
+			</div>
+			<div class="option">
+				Categorias
+			</div>
+			<div class="option">
+				Home
+			</div>
+			<div class="option carrinho">
+				Carrinho
+			</div>
+		</div>
+	</header>
+	<main>
+		<img src="/<%= product.img_path%>" alt="" class="product_image">
+		<div class="product">
+			<div class="product_name">
+				<%= product.name %>
+			</div>
+			<div class="product_price">
+				<%= product.price %>
+			</div>
+			<div class="product_desc">
+				<%= product.desc %>
+			</div>
+		</div>
+		<div class="add_to_cart">
+			Compre agora!!!!
+		</div>
+	</main>
+  
+</body>
+</html>
+<script>
+	userList = document.getElementById("user_list")
+	user = document.getElementById("user")
+	function showUserOptions() {
+		userList.hidden = false
+		user.classList.add("big")
+	}
+	function hideUserOptions() {
+		userList.hidden = true
+		user.classList.remove("big")
+	}
+</script>
