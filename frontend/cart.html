@@ -4,10 +4,10 @@
 
 <head>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="cartstyle.css">
 </head>
 
 <body>
-	<div class="shadow" hidden id="shadow"></div>
 	<header>
 		<div class="initial_header">
 			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
@@ -31,45 +31,41 @@
 			</div>
 		</div>
 	</header>
+
 	<main>
-		<h1 class="cart_title">Carrinho.</h1>
-        <div class="cart_cols">
-            <div class="cart_left">Item</div>
-            <div class="cart_right">Preço total</div>
-            <div class="cart_right">Quantidade</div>
-            <div class="cart_right">Preço individual</div>
-        </div>
-        <ul class="cart_list">
-            <!--Template de produto-->
-            <li class="cart_product">
-				<img class="cart_img" src="https://cdn.awsli.com.br/1237/1237484/produto/50211573/9d60d2fdf1.jpg">
-				<div>
-					<p class="cart_name">Nome do produto</p>
-					<p class="cart_desc">Descrição do produto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-				<div class="cart_pricebar">
-					<p class="cart_price">R$ 300,00</p>
-					<form><input class="cart_qtd" type="text" readonly value="2"></form>
-					<p class="cart_total">R$ 1800,00</p>
-				</div>
-			</li>
-			
-			<!--Fim doemplate de produto-->
-			
-			<li class="cart_product">
-				<img class="cart_img" src="https://cdn.awsli.com.br/1237/1237484/produto/50211573/9d60d2fdf1.jpg">
-				<div>
-					<p class="cart_name">Nome do produto</p>
-					<p class="cart_desc">Descrição do produto Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-				<div class="cart_pricebar">
-					<p class="cart_price">R$ 300,00</p>
-					<form><input class="cart_qtd" type="text" readonly value="2"></form>
-					<p class="cart_total">R$ 1800,00</p>
-				</div>
+		<p class="Cart_Title">Carrinho</p>
+		<div class="First">Item</div>
+		<div class="Second">Preço</div>
+		<div class="Third">Quantidade</div>
+		<div class="Fourth">Preço total</div>
+        <ul class="Cart_List">
+			<li class="Cart_Product">
+				<table>
+					<tr class="Table">
+						<td rowspan="2"class="Product_Img">
+							<img class="Img" src="https://cdn.awsli.com.br/1237/1237484/produto/50211573/9d60d2fdf1.jpg">
+						</td>
+						<td class="Product_Name">
+							Nome
+						</td>
+						<td rowspan="2"class="Product_Price">
+							<div class="IndividualP">R$300,00</div>
+							<div class="Quantidade"><input type="number" value="2"></div>
+							<div class="PrecoTotal">R$600,00</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="Product_Desc">
+							desc
+						</td>
+					</tr>
+				</table>
 			</li>
 
-        </ul>
+		</ul>
+
+        <div class="PrecoCompra">Preço da compra:</div>
+		<div class="BotaoDeCompra">R$ 10000000,00</div>
 	</main>
 </body>
 
