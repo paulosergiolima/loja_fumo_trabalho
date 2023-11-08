@@ -185,3 +185,22 @@ header {
 	line-height: 5rem;
 }
 
+@media (max-width: 1000px)  {
+	.product {
+		margin-top: 100%;
+		margin-left: 25%;
+	}
+	
+	.product_image {
+		left: 15%;
+	}
+	
+	.main {
+		background-color: red;
+	}
+	.add_to_cart {
+		float: none;
+		margin-left: 35%;
+	}
+}
+
