@@ -51,15 +51,16 @@ app.get("/products",check)
 app.get("/product/:userName", check)
 app.get("/test", check)
 
-
-app.get("/products", async (req, res) => {
-	const products = await prisma.product.findMany()
-	res.json(products)
-})
 app.get("/views/style.css", async (req, res) => {
 	const opts = {root: path.basename(__dirname) + "/.."}
 	console.log(opts.root)
 	res.sendFile("views/style.css", opts)
+})
+
+app.get("/views/products.css", async(req,res) => {
+	const opts = {root: path.basename(__dirname) + "/.."}
+	console.log(opts.root)
+	res.sendFile("views/products.css", opts)
 })
 //test endpoint
 app.get("/test", async (req,res) => {
@@ -70,6 +71,15 @@ app.get("/test", async (req,res) => {
 app.post(`/test`, async (req, res) => {
 	console.log(req.body)
 	res.send(req.body)
+})
+
+app.get(`/products`, async (req, res) => {
+	const products = await prisma.product.findMany()
+	console.log(products[0].name)
+	res.render('products', {products: products})
+	for(const product of products) {
+		console.log(product)
+	}
 })
 
 app.get(`/products/:userName`,async (req, res) => {
@@ -136,7 +146,6 @@ app.post('/user', async (req, res) => {
 	console.log(token)
 	res.json(token)
 }) 
-
 
 
 const server = app.listen(port, () =>
