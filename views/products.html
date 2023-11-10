@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+	Essa pagina também sera renderizado pelo ejs, portanto
+	products será o array contendo os produtos, e funcionara como o product, porém sendo um array
+	então vc acessara o primeiro elemento usando products[0].price
+-->
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/views/products.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fumoland - Produtos</title>
+</head>
+
+<body>
+	<main>
+		<header>
+			<div class="initial_header">
+				<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
+					User
+					<ul hidden id="user_list" class="user_list">
+						<li class="user_option" onclick="showCreateUser()">Create User</li>
+						<li class="user_option">Log In</li>
+					</ul>
+				</div>
+				<div class="option">
+					Produtos
+				</div>
+				<div class="option">
+					Categorias
+				</div>
+				<div class="option">
+					Home
+				</div>
+				<div class="option carrinho">
+					Carrinho
+				</div>
+			</div>
+		</header>
+		<div class="list_of_products">
+			<!-- Como um produto sera estruturado -->
+			<% for (product of products) { %>
+				<div class="product">
+					<img class="product_image" src="<%= product.img_path %>" alt="">
+					<div class="product_name"><%= product.name %></div>
+					<div class="product_categories">
+						<% for (category of product.categories) { %>
+						<div class="product_category"><%= category.name %></div>
+						<% } %>
+					</div>
+					<div class="product_price"><%= product.price %></div>
+				</div>
+				<% } %>
+
+		</div>
+	</main>
+
+</body>
+
+</html>
+<script>
+	userList = document.getElementById("user_list")
+	user = document.getElementById("user")
+	function showUserOptions() {
+		userList.hidden = false
+		user.classList.add("big")
+	}
+	function hideUserOptions() {
+		userList.hidden = true
+		user.classList.remove("big")
+	}
+</script>

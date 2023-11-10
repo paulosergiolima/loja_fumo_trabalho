@@ -51,15 +51,16 @@ app.get("/products",check)
 app.get("/product/:userName", check)
 app.get("/test", check)
 
-
-app.get("/products", async (req, res) => {
-	const products = await prisma.product.findMany()
-	res.json(products)
-})
 app.get("/views/style.css", async (req, res) => {
 	const opts = {root: path.basename(__dirname) + "/.."}
 	console.log(opts.root)
 	res.sendFile("views/style.css", opts)
+})
+
+app.get("/views/products.css", async(req,res) => {
+	const opts = {root: path.basename(__dirname) + "/.."}
+	console.log(opts.root)
+	res.sendFile("views/products.css", opts)
 })
 //test endpoint
 app.get("/test", async (req,res) => {
@@ -72,11 +73,25 @@ app.post(`/test`, async (req, res) => {
 	res.send(req.body)
 })
 
-app.get(`/products/:userName`,async (req, res) => {
-	const username = req.params.userName
+app.get(`/products`, async (req, res) => {
+	const products = await prisma.product.findMany({
+		include: {
+			categories: true
+		},
+	})
+	console.log(products[0].name)
+	res.render('products', {products: products})
+	return
+})
+
+app.get(`/products/:name`,async (req, res) => {
+	const name = req.params.name
 	const product = await prisma.product.findFirst({
 		where: {
-			name: username
+			name: name
+		},
+		include: {
+			categories: true,
 		}
 	})
 	console.log(product)
@@ -137,6 +152,25 @@ app.post('/user', async (req, res) => {
 	res.json(token)
 }) 
 
+app.put('/categoryToProduct', async (req, res) => {
+	const result = await prisma.product.update({
+		where: {
+			name: req.body.name,
+		},
+		data: {
+			categories: {
+				connect: {
+					id: parseInt(req.body.category_id)
+				}
+			}
+		},
+		include: {
+			categories: true,
+		}
+	})
+	res.send(result)
+	return
+})
 
 
 const server = app.listen(port, () =>
