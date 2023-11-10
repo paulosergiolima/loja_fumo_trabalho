@@ -121,6 +121,7 @@ app.get('/user', async(req, res) => {
 })
 app.get('/categories', async (req, res) => {
 	const categories = await prisma.category.findMany({})
+	console.log(categories)
 	res.render('categories', {categories: categories})
 })
 
