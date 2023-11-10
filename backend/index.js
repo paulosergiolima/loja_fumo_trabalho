@@ -74,19 +74,24 @@ app.post(`/test`, async (req, res) => {
 })
 
 app.get(`/products`, async (req, res) => {
-	const products = await prisma.product.findMany()
+	const products = await prisma.product.findMany({
+		include: {
+			categories: true
+		},
+	})
 	console.log(products[0].name)
 	res.render('products', {products: products})
-	for(const product of products) {
-		console.log(product)
-	}
+	return
 })
 
-app.get(`/products/:userName`,async (req, res) => {
-	const username = req.params.userName
+app.get(`/products/:name`,async (req, res) => {
+	const name = req.params.name
 	const product = await prisma.product.findFirst({
 		where: {
-			name: username
+			name: name
+		},
+		include: {
+			categories: true,
 		}
 	})
 	console.log(product)
