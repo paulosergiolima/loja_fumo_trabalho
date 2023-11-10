@@ -21,6 +21,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('frontend'))
+app.use(express.static('public'))
 
 let ejsOptions = {delimiter: '?'}
 
@@ -117,6 +118,29 @@ app.get('/user', async(req, res) => {
 	const token = jwt.sign(data, jwtSecretKey)
 	res.send(token)
 	return
+})
+app.get('/categories', async (req, res) => {
+	const categories = await prisma.category.findMany({})
+	console.log(categories)
+	res.render('categories', {categories: categories})
+})
+
+
+app.get('/categories/:name', async (req, res) => {
+	const products = await prisma.product.findMany({
+		where: {
+			categories: {
+				some: {
+					name: req.params.name
+				}
+			}
+		},
+		include: {
+			categories: true
+		}
+	})
+
+	res.render('category', {products: products, category: req.params.name})
 })
 
 //Post requests
