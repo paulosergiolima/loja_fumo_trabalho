@@ -79,8 +79,10 @@ html {
 }
 
 .product_image {
-	max-width: 100%;
-	max-height: 30%;
+	width: 180px;
+	height: 230px;
+
+	
 }
 
 .product_categories {
@@ -121,10 +123,9 @@ header {
 	background-color: deeppink;
 }
 
-
 .create_user_container {
 	text-align: center;
-	position: fixed;
+	position: absolute;
 	margin: -50vh 35vw;
 	background-color: red;
 	padding: 7.5vh 7.5vw;
@@ -139,11 +140,6 @@ header {
 	margin-left: -0.6vw;
 	opacity: 0.7;
 	background-color: black;
-}
-
-.headerlink {
-	text-decoration: none;
-	color: white;
 }
 
 .close_button {
