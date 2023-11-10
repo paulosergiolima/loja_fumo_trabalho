@@ -35,7 +35,6 @@ Para instruir trabalho a ser feito use TODO
 .welcome {
 	font-size: 2rem;
 	background-color: lightgreen;
-	/**TODO: Não esta criando uma borda**/
 	box-sizing: border-box;
 	border: 20px double snow;
 	width: 50%;
@@ -130,7 +129,7 @@ header {
 	padding: 7.5vh 7.5vw;
 	z-index: 40;
 }
-
+/* vw vh supremacy */
 .shadow {
 	position: absolute;
 	z-index: 40;
