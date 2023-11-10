@@ -1,0 +1,116 @@
+.Cart_Title {
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    width: auto;
+    margin: 0rem 0rem;
+}
+
+.First {
+    float: left;
+    margin: 0rem 0rem 0rem 19.7rem;
+}
+
+.Second {
+    float: left;
+    margin: 0rem 0rem 0rem 23.5rem;
+}
+
+.Third {
+    float: left;
+    margin: 0rem 0rem 0rem 10rem;
+}
+
+.Fourth {
+    float: none;
+    margin: 0rem 0rem 0rem 68rem;
+}
+
+.Cart_List {
+    width: 60rem;
+    height: 34rem;
+    margin: 0rem 0rem 0rem 13rem;
+    max-height: 34rem;
+    overflow: auto;
+    list-style: none;
+    float:none;
+    /*background-color: red;*/
+}
+
+.Cart_List::-webkit-scrollbar {
+    display: none;
+}
+
+.Cart_Product {
+    border-style: solid;
+    border-left: 2px;
+    border-right: 2px;
+    border-color: blue;
+    height: 8.4rem;
+}
+
+.Img {
+    width: auto;
+    height: 8rem;
+}
+
+.Product_Name {
+    /*background-color: blue;*/
+    width: 15rem;
+    max-width: 15rem;
+    overflow: scroll;
+    height: 2rem;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0rem 0rem 0rem 1rem;
+}
+
+.Product_Desc {
+    /*background-color: purple;*/
+    height: 4rem;
+    max-height: 6rem;
+    overflow-y: scroll;
+    width: 15rem;
+    padding: 0rem 0rem 0rem 1rem;
+    vertical-align: top;
+}
+
+.Product_Name::-webkit-scrollbar {
+    display: none;
+}
+
+.Product_Desc::-webkit-scrollbar {
+    display: none;
+}
+
+.Product_Price {
+    /*background-color: pink;*/
+    width: 33rem;
+}
+
+.IndividualP {
+    float: left;
+    margin: 0rem 0rem 0rem 2rem;
+}
+
+.Quantidade {
+    float: left;
+    margin: 0rem 0rem 0rem 6rem;
+}
+
+.PrecoTotal {
+    float: left;
+    margin: -1.3rem 0rem 0rem 26rem;
+}
+
+.PrecoCompra{
+    position: absolute;
+    margin: 1rem 0rem 0rem 62rem;
+    font-size: x-large;
+}
+
+.BotaoDeCompra{
+    position: absolute;
+    margin: 3rem 0rem 0rem 63.5rem;
+    font-size: large;
+}
