@@ -8,37 +8,15 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/views/products.css">
+	<link rel="stylesheet" href="/css/style.css">
+    <script defer src="/js/script.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Fumoland - Categorias</title>
 </head>
 
 <body>
+    <%- include('header') %>
 	<main>
-		<header>
-			<div class="initial_header">
-				<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
-					User
-					<ul hidden id="user_list" class="user_list">
-						<li class="user_option" onclick="showCreateUser()">Create User</li>
-						<li class="user_option">Log In</li>
-					</ul>
-				</div>
-				<div class="option">
-					Produtos
-				</div>
-				<div class="option">
-					Categorias
-				</div>
-				<div class="option">
-					Home
-				</div>
-				<div class="option carrinho">
-					Carrinho
-				</div>
-			</div>
-		</header>
-		
 		<div class="list_of_categories">
             <% for (category of categories) { %>
             <p> <a href="categories/<%= category.name %>"> <%= category.name %> </a> </p>
@@ -47,19 +25,7 @@
 
 		</div>
 	</main>
-
+    <%- include('create_user') %>
 </body>
 
 </html>
-<script>
-	userList = document.getElementById("user_list")
-	user = document.getElementById("user")
-	function showUserOptions() {
-		userList.hidden = false
-		user.classList.add("big")
-	}
-	function hideUserOptions() {
-		userList.hidden = true
-		user.classList.remove("big")
-	}
-</script>

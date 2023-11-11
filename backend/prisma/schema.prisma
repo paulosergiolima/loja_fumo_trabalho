@@ -24,7 +24,7 @@ model product {
 	img_path String
 	id Int @id @default(autoincrement())
 	name String @unique
-	price Int 
+	price Float  
 	desc String
 	favorited_by user[]
 	bought bought_product[]

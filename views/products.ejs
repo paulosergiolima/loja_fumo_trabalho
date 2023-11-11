@@ -8,45 +8,24 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/views/products.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script defer src="/js/script.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Fumoland - Produtos</title>
 </head>
 
 <body>
 	<main>
-		<header>
-			<div class="initial_header">
-				<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
-					User
-					<ul hidden id="user_list" class="user_list">
-						<li class="user_option" onclick="showCreateUser()">Create User</li>
-						<li class="user_option">Log In</li>
-					</ul>
-				</div>
-				<div class="option">
-					Produtos
-				</div>
-				<div class="option">
-					Categorias
-				</div>
-				<div class="option">
-					Home
-				</div>
-				<div class="option carrinho">
-					Carrinho
-				</div>
-			</div>
-		</header>
+		<%- include('header') %>
 		<div class="list_of_products">
 			<!-- Como um produto sera estruturado -->
 			<% for (product of products) { %>
 				<div class="product">
-					<img class="product_image" src="/imgs/<%= product.img_path %>" alt="">
-					<div class="product_name"><%= product.name %></div>
+					<a class="headerlink" href="products/<%= product.name %>"> <img class="product_image" src="/imgs/<%= product.img_path %>" alt=""> </a>
+					<a class="headerlink" href="products/<%= product.name %>"> <div class="product_name"><%= product.name %></div></a>
 					<div class="product_categories">
 						<% for (category of product.categories) { %>
-						<div class="product_category"><%= category.name %></div>
+						<a class="headerlink" href="categories/<%= category.name %>"> <div class="product_category"><%= category.name %></div> </a>
 						<% } %>
 					</div>
 					<div class="product_price"><%= product.price %></div>
@@ -55,19 +34,7 @@
 
 		</div>
 	</main>
-
+	<%- include('create_user') %>
 </body>
 
 </html>
-<script>
-	userList = document.getElementById("user_list")
-	user = document.getElementById("user")
-	function showUserOptions() {
-		userList.hidden = false
-		user.classList.add("big")
-	}
-	function hideUserOptions() {
-		userList.hidden = true
-		user.classList.remove("big")
-	}
-</script>
