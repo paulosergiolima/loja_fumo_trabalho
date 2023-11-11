@@ -1,63 +1,6 @@
-/** Observaões:
-Prefira rem a outras medidas, rem é escalar por isso é melhor para celulares
-Quando for fazer alguma estranha, ou dificil de compreender explique
-Para instruir trabalho a ser feito use TODO
-**/
-
-.initial_header {
-	/* margin-left: -200px; */
-	/* margin-right: -200px; */
-	/**Isso vai fazer o header ser um header **/
-	margin-left: -0.5rem;
-	margin-top: -0.5rem;
-	position: sticky;
-	z-index: 1;
-	/*cores*/
-	background-color: pink;
-	color: white;
-
-	height: 2.3rem;
-	width: 102%;
-}
-.option {
-	padding-right: 2rem;
-	padding-left: 2rem;
-	padding-top: 0.5rem;
-	display: inline-block;
-	/**TODO: Deve ter um jeito melhor de aumentar o tamanho do div criança para o div pai **/
-	height: 1.8rem;
-}
-
-.option:hover {
-	background-color: #F2BFFF;
-}
-
-.welcome {
-	font-size: 2rem;
-	background-color: lightgreen;
-	/**TODO: Não esta criando uma borda**/
-	box-sizing: border-box;
-	border: 20px double snow;
-	width: 50%;
-
-	margin-top: 3rem;
-	margin-left: 25%;
-
-	padding: 4rem;
-
-	position: relative;
-
-}
-
-.list_of_products {
-	list-style-type: disc;
-	/* margin: 0; */
-	/* padding: 0; */
-	margin: 5rem;
-	overflow: hidden;
-}
 
 .product {
+	display: block;
 	max-width: 15rem;
 	margin-left: 60%;
 	margin-top: 5%;
@@ -123,55 +66,6 @@ html {
 	display: inline-block;
 }
 
-
-body {
-	overflow: auto;
-}
-
-header {
-	width: 100%;
-}
-.user_list {
-	left: -2rem;
-	position: absolute;
-}
-.user_option:hover {
-	background-color: deeppink;
-}
-
-.create_user_container {
-	text-align: center;
-	position: absolute;
-	margin: -50vh 35vw;
-	background-color: red;
-	padding: 7.5vh 7.5vw;
-	z-index: 40;
-}
-
-.shadow {
-	position: absolute;
-	z-index: 40;
-	width: 100vw;
-	height: 100vh;
-	margin-left: -0.6vw;
-	opacity: 0.7;
-	background-color: black;
-}
-
-.close_button {
-	position: absolute;
-	border: none;
-	background: none;
-	cursor: pointer;
-	left: 90%;
-	bottom: 90%;
-
-}
-
-.create_user.input {
-	width: 100vw;
-}
-
 .add_to_cart {
 	width: 15rem;
 	background-color: red;
@@ -202,9 +96,5 @@ header {
 		float: none;
 		margin-left: 35%;
 	}
-}
-
-.headerlink {
-	text-decoration: none;
 }
 

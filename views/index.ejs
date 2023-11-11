@@ -5,122 +5,29 @@
 <head>
 	<title>Fumoland</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<script defer src="/js/script.js"></script>
 </head>
 
 <body>
-	<div class="shadow" hidden id="shadow"></div>
-	<header>
-		<div class="initial_header">
-			<div id="user" class="option" onmouseenter="showUserOptions()" onmouseleave="hideUserOptions()">
-				User
-				<ul hidden id="user_list" class="user_list">
-					<li class="user_option" onclick="showCreateUser()">Create User</li>
-					<li class="user_option">Log In</li>
-				</ul>
-			</div>
-			<div class="option">
-				<a class="headerlink" href="/">Home</a>
-			</div>
-			<div class="option">
-				<a class="headerlink" href="categories"> Categorias </a>
-			</div>
-			<div class="option">
-				<a href="products" class="headerlink">Produtos</a>
-			</div>
-			<div class="option carrinho">
-				<a href="cart" class="headerlink">Carrinho</a>
-			</div>
-		</div>
-	</header>
+	<%- include('header') %>
 	<main>
 		<div class="welcome">Welcome to our Shop.</div>
 		<div class="list_of_products">
 			<!-- Como um produto sera estruturado -->
+			<% for( let index = 0; index < 2; index++ ) { %>
 			<div class="product">
-				<img class="product_image" src="/imgs/fumo.jpg" alt="">
-				<div class="product_name">Fumo</div>
+				<img class="product_image" src="/imgs/<%= products[index].img_path %>" alt="">
+				<div class="product_name"><%= products[index].name %></div>
 				<div class="product_categories">
 					<div class="product_category">Test</div>
 					<div class="product_category">Test</div>
 				</div>
 
-				<div class="product_price">60.00</div>
+				<div class="product_price">R$<%= Number(products[index].price).toLocaleString('en') %></div>
 			</div>
-			<div class="product">
-				<img class="product_image" src="/imgs/fumo.jpg" alt="">
-				<div class="product_name">Fumo</div>
-				<div class="product_categories">
-					<div class="product_category">Test</div>
-					<div class="product_category">Test</div>
-				</div>
-
-				<div class="product_price">60.00</div>
-			</div>
+			<% } %>
 		</div>
 	</main>
+	<%- include('create_user') %>
 </body>
-<!-- Working on create user popup -->
-<div hidden class="create_user_container" id="create_user_container">
-	<button class="close_button" onclick="close_create_user();">
-		<img src="/imgs/cross-svgrepo-com.svg" width="20rem" height="20rem" alt="">
-	</button>
-	<div class="create_user" id="create_user">
-		Nome <br>
-		<input type="text" name="" id="notUserName"> <br>
-		Email <br>
-		<input type="email" name="" id="userEmail"> <br>
-		Senha <br>
-		<input type="password" name="" id="userPassword"> <br>
-		<input type="button" value="Submit" onclick="createUser()">
-	</div>
-</div>
-
 </html>
-<script>
-	create_user_container = document.getElementById("create_user_container")
-	shadow = document.getElementById("shadow")
-	userList = document.getElementById("user_list")
-	user = document.getElementById("user")
-	function showUserOptions() {
-		userList.hidden = false
-		user.classList.add("big")
-	}
-	function hideUserOptions() {
-		userList.hidden = true
-		user.classList.remove("big")
-	}
-	async function createUser() {
-		const body_value = JSON.stringify({
-			name: document.getElementById("notUserName").value,
-			email: document.getElementById("userEmail").value,
-			password: document.getElementById("userPassword").value
-		})
-		console.log(body_value)
-		console.log(`${document.getElementById("notUserName").value}`)
-		console.log(`${document.getElementById("userEmail").value}`)
-		console.log(`${document.getElementById("userPassword").value}`)
-		const token = await fetch("/user", {
-			method: "POST",
-			body: JSON.stringify({
-				name: document.getElementById("notUserName").value,
-				email: document.getElementById("userEmail").value,
-				password: document.getElementById("userPassword").value
-			}),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8"
-			}
-		})
-		const real_token = await token.json()
-		console.log(real_token)
-		localStorage.setItem("myToken", realToken)
-
-	}
-	function showCreateUser() {
-		shadow.hidden = false
-		create_user_container.hidden = false
-	}
-	function close_create_user() {
-		shadow.hidden = true
-		create_user_container.hidden = true
-	}
-</script>

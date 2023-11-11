@@ -52,23 +52,16 @@ app.get("/product/:userName", check)
 app.get("/test", check)
 
 app.get("/", async (req,res) => {
-	res.render('index')
+	const products = await prisma.product.findMany({})
+	console.log(products[0].img_path)
+	res.render('index', {products: products})
 }) 
 
 app.get("/cart", async (req, res) => {
 	res.render('cart')
 })
 
-//test endpoint
-app.get("/test", async (req,res) => {
-	console.log(req.body.user)
-	res.send(req.body.user)
-})
 
-app.post(`/test`, async (req, res) => {
-	console.log(req.body)
-	res.send(req.body)
-})
 
 app.get(`/products`, async (req, res) => {
 	const products = await prisma.product.findMany({
