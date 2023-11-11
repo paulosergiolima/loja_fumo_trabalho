@@ -58,35 +58,12 @@ Para instruir trabalho a ser feito use TODO
 }
 
 .product {
-	max-width: 15rem;
-	margin-left: 60%;
-	margin-top: 5%;
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+	overflow: auto;
+	display: inline-block;
 	background-color: white;
-	padding: 4rem 4rem 2rem 4rem;
-	word-wrap: break-word;
-}
-
-.product_name {
-	overflow: visible;
-	max-width: 15rem;
-	margin-bottom: 15%;
-	font-size: 3rem;
-}
-
-.product_price {
-	overflow: auto;
-	max-width: 15rem;
-	margin-bottom: 15%;
-	font-size: 3rem;
-}
-
-.product_desc {
-	word-wrap: break-word;
-	font-size: 1.5rem;
-	overflow: auto;
-	max-width: 15rem;
-	margin-bottom: 10%;
-	
+	max-width: 12rem;
 }
 
 .big {
@@ -95,23 +72,27 @@ Para instruir trabalho a ser feito use TODO
 	
 }
 
+
 html {
 	background-color: #BFECFF;
 	box-sizing: border-box;
 }
 
 .product_image {
-	position: absolute;
-	top: 18%;
-	left: 1%;
-	max-width: 30rem;
-	max-height: 30rem;
+	width: 180px;
+	height: 230px;
+
+	
 }
 
 .product_categories {
 	max-width: 100%;
 	text-align: center;
 	color: blue;
+}
+
+.product_price {
+	text-align: center;
 }
 
 .product_category {
@@ -123,6 +104,9 @@ html {
 	display: inline-block;
 }
 
+.product_name {
+	text-align: center;
+}
 
 body {
 	overflow: auto;
@@ -172,35 +156,14 @@ header {
 	width: 100vw;
 }
 
-.add_to_cart {
-	width: 15rem;
-	background-color: red;
-	float: right;
-	height: 5rem;
-	margin-top: 5%;
-	margin-right: 15%;
-	font-size: 1.7rem;
-	text-align: center;
-	vertical-align: text-bottom;
-	line-height: 5rem;
+.Cart_Title {
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    width: auto;
+    margin: 0rem 0rem;
 }
 
-@media (max-width: 1000px)  {
-	.product {
-		margin-top: 100%;
-		margin-left: 25%;
-	}
-	
-	.product_image {
-		left: 15%;
-	}
-	
-	.main {
-		background-color: red;
-	}
-	.add_to_cart {
-		float: none;
-		margin-left: 35%;
-	}
+.headerlink {
+	text-decoration: none;
 }
-

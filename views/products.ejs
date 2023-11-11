@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/views/products.css">
+	<link rel="stylesheet" href="/css/products.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Fumoland - Produtos</title>
 </head>
@@ -25,16 +25,16 @@
 					</ul>
 				</div>
 				<div class="option">
-					Produtos
+					<a class="headerlink" href="/">Home</a>
 				</div>
 				<div class="option">
-					Categorias
+					<a class="headerlink" href="categories"> Categorias </a>
 				</div>
 				<div class="option">
-					Home
+					<a href="products" class="headerlink">Produtos</a>
 				</div>
 				<div class="option carrinho">
-					Carrinho
+					<a href="cart" class="headerlink">Carrinho</a>
 				</div>
 			</div>
 		</header>
@@ -42,11 +42,11 @@
 			<!-- Como um produto sera estruturado -->
 			<% for (product of products) { %>
 				<div class="product">
-					<img class="product_image" src="/imgs/<%= product.img_path %>" alt="">
-					<div class="product_name"><%= product.name %></div>
+					<a class="headerlink" href="products/<%= product.name %>"> <img class="product_image" src="/imgs/<%= product.img_path %>" alt=""> </a>
+					<a class="headerlink" href="products/<%= product.name %>"> <div class="product_name"><%= product.name %></div></a>
 					<div class="product_categories">
 						<% for (category of product.categories) { %>
-						<div class="product_category"><%= category.name %></div>
+						<a class="headerlink" href="categories/<%= category.name %>"> <div class="product_category"><%= category.name %></div> </a>
 						<% } %>
 					</div>
 					<div class="product_price"><%= product.price %></div>
