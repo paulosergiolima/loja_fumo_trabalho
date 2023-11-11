@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/d7b81609-6ae3-4221-ae9f-fdabfbde10fb/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/fumoland",
+    "appService.deploySubpath": "."
+}

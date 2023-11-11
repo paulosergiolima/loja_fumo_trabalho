@@ -11,12 +11,12 @@ const fs = require('fs')
 const path = require('path')
 
 const saltRounds = 10
-const port = 3000
 
 const prisma = new PrismaClient()
 const app = express()
 app.set('view engine', 'ejs')
 dotenv.config()
+const port = process.env.PORT
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
