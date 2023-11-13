@@ -69,7 +69,6 @@ app.get(`/products`, async (req, res) => {
 			categories: true
 		},
 	})
-	console.log(products[0].name)
 	res.render('products', {products: products})
 	return
 })
