@@ -165,6 +165,19 @@ app.post('/user', async (req, res) => {
 	res.json(token)
 }) 
 
+app.post('/product', async (req, res) => {
+	const new_product = await prisma.product.create({
+		data: {
+			img_path: req.body.img_path,
+			name: req.body.name,
+			price: req.body.price,
+			desc: req.body.desc,
+			rating: req.body.rating,
+		}
+	})
+	res.send(new_product)
+})
+
 app.put('/categoryToProduct', async (req, res) => {
 	const result = await prisma.product.update({
 		where: {

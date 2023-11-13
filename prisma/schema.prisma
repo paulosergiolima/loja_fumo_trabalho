@@ -29,7 +29,7 @@ model product {
 	favorited_by user[]
 	bought bought_product[]
 	categories category[]
-	rating Int 
+	rating Int?
 }
 
 model bought_product {
