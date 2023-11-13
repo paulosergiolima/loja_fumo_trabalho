@@ -11,12 +11,12 @@ const fs = require('fs')
 const path = require('path')
 
 const saltRounds = 10
-const port = 3000
 
 const prisma = new PrismaClient()
 const app = express()
 app.set('view engine', 'ejs')
 dotenv.config()
+const port = process.env.PORT
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -53,7 +53,7 @@ app.get("/test", check)
 
 app.get("/", async (req,res) => {
 	const products = await prisma.product.findMany({})
-	console.log(products[0].img_path)
+	console.log(products)
 	res.render('index', {products: products})
 }) 
 
@@ -69,7 +69,6 @@ app.get(`/products`, async (req, res) => {
 			categories: true
 		},
 	})
-	console.log(products[0].name)
 	res.render('products', {products: products})
 	return
 })
@@ -164,6 +163,19 @@ app.post('/user', async (req, res) => {
 	console.log(token)
 	res.json(token)
 }) 
+
+app.post('/product', async (req, res) => {
+	const new_product = await prisma.product.create({
+		data: {
+			img_path: req.body.img_path,
+			name: req.body.name,
+			price: req.body.price,
+			desc: req.body.desc,
+			rating: req.body.rating,
+		}
+	})
+	res.send(new_product)
+})
 
 app.put('/categoryToProduct', async (req, res) => {
 	const result = await prisma.product.update({
