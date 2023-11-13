@@ -53,7 +53,7 @@ app.get("/test", check)
 
 app.get("/", async (req,res) => {
 	const products = await prisma.product.findMany({})
-	console.log(products[0].img_path)
+	console.log(products)
 	res.render('index', {products: products})
 }) 
 

@@ -1,10 +1,11 @@
 version: "1"
 services: 
   node:
-    image: pauulosergio/loja_fumo:04
+    image: pauulosergio/loja_fumo:05
     container_name: express-api
     ports:
       - "8080:8080"
+      - "5555:5555"
     networks:
       - docker-service
     restart: on-failure
