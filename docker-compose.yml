@@ -1,7 +1,7 @@
 version: "1"
 services: 
   node:
-    image: pauulosergio/loja_fumo:05
+    image: pauulosergio/loja_fumo:latest
     container_name: express-api
     ports:
       - "8080:8080"
