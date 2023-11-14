@@ -169,7 +169,7 @@ app.post('/product', async (req, res) => {
 		data: {
 			img_path: req.body.img_path,
 			name: req.body.name,
-			price: req.body.price,
+			price: parseInt(req.body.price),
 			desc: req.body.desc,
 			rating: req.body.rating,
 		}
@@ -197,6 +197,15 @@ app.put('/categoryToProduct', async (req, res) => {
 	return
 })
 
+
+app.delete('/product', async(req, res) => {
+	const deleted_product = await prisma.product.delete({
+		where: {
+			name: req.body.name
+		}
+	})
+	res.send(deleted_product)
+})
 
 const server = app.listen(port, () =>
 	console.log(`Server ready at http://localhost:${port}`)
