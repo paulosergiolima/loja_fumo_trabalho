@@ -48,7 +48,7 @@ function addToCart() {
     const product = {};
     var ArrayOfProducts;
     product.img_path = document.getElementById("product_image").src
-    product.price = document.getElementById("product_price").innerHTML.trim()
+    product.price = document.getElementById("product_price").innerHTML.trim().slice(2)
     product.name = document.getElementById("product_name").innerHTML.trim()
     product.desc = document.getElementById("product_desc").innerHTML.trim()
     product.quant = 1
