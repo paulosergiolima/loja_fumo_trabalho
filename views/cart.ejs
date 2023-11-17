@@ -6,40 +6,20 @@
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/cartstyle.css">
 	<script defer src="/js/script.js"></script>
+	<script defer src="/js/cart.js"></script>
 </head>
 
 <body>
 	<%- include('header') %>
+
 	<main>
 		<p class="Cart_Title">Carrinho</p>
 		<div class="First">Item</div>
 		<div class="Second">Preço</div>
 		<div class="Third">Quantidade</div>
 		<div class="Fourth">Preço total</div>
-        <ul class="Cart_List">
-			<li class="Cart_Product">
-				<table>
-					<tr class="Table">
-						<td rowspan="2"class="Product_Img">
-							<img class="Img" src="https://cdn.awsli.com.br/1237/1237484/produto/50211573/9d60d2fdf1.jpg">
-						</td>
-						<td class="Product_Name">
-							Nome
-						</td>
-						<td rowspan="2"class="Product_Price">
-							<div class="IndividualP">R$300,00</div>
-							<div class="Quantidade"><input type="number" value="2"></div>
-							<div class="PrecoTotal">R$600,00</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="Product_Desc">
-							desc
-						</td>
-					</tr>
-				</table>
-			</li>
-
+        <ul class="Cart_List" id="cart_list">
+			
 		</ul>
 
         <div class="PrecoCompra">Preço da compra:</div>
