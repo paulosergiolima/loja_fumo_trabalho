@@ -12,8 +12,8 @@ for (item of current_items) {
 						</td>
 						<td rowspan="2"class="Product_Price">
 							<div class="IndividualP">R$${item.price}</div>
-							<div class="Quantidade"><input onchange="changeTotal('${item.name}')" type="number" value="1"></div>
-							<div class="PrecoTotal">R$${item.price}</div>
+							<div class="Quantidade"><input onchange="changeTotal('${item.name}')" type="number" value="${item.quant}"></div>
+							<div class="PrecoTotal">R$${(item.price * item.quant).toFixed(2)}</div>
 						</td>
 					</tr>
 					<tr>
@@ -31,14 +31,23 @@ for (item of current_items) {
 
 function changeTotal(id) {
 	const current_element = document.getElementById(id)
-    console.log(id)
-	console.log(current_element)
 	const quantity = current_element.getElementsByClassName("Quantidade")[0].firstElementChild
-	console.log(quantity)
 	const price_total = current_element.getElementsByClassName("PrecoTotal")[0]
 	const price = current_element.getElementsByClassName("IndividualP")[0]
 	const real_price = parseFloat(price.innerHTML.slice(2))
 	const real_quantity = parseInt(quantity.value)
+	if(real_quantity === 0) {
+		const name = current_element.getElementsByClassName("Product_Name")[0].innerHTML.replace(/(\r\n|\n|\r|\t)/gm,"")
+		current_element.remove()
+		for (const i in current_items) {
+			console.log(name, current_items[i].name)
+			if (name === current_items[i].name) {
+				current_items.splice(i, 1)
+				localStorage.setItem("inCart", JSON.stringify(current_items))
+				return
+			}
+		}
+	}
 	price_total.innerHTML = `R$${(real_price * real_quantity).toFixed(2)}`
 
 }

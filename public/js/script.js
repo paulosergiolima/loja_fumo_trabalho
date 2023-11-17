@@ -51,13 +51,21 @@ function addToCart() {
     product.price = document.getElementById("product_price").innerHTML.trim()
     product.name = document.getElementById("product_name").innerHTML.trim()
     product.desc = document.getElementById("product_desc").innerHTML.trim()
-    current_items = JSON.parse(localStorage.getItem("inCart"))
-    if (current_items === null) {
-         ArrayOfProducts =[product]
-    }else {
-         current_items.push(product)
-         ArrayOfProducts = current_items
+    product.quant = 1
+    var current_items = JSON.parse(localStorage.getItem("inCart"))
+    for (const i in current_items) {
+        if (current_items[i].name == product.name) {
+            product.quant = current_items[i].quant + 1
+            current_items.splice(i, 1)
+        }
     }
+
+    if (current_items === null) {
+            ArrayOfProducts = [product]
+        } else {
+            current_items.push(product)
+            ArrayOfProducts = current_items
+        }
     localStorage.setItem("inCart", JSON.stringify(ArrayOfProducts))
     console.log(ArrayOfProducts)
 }
