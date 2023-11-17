@@ -67,6 +67,7 @@ html {
 }
 
 .add_to_cart {
+	cursor: pointer;
 	width: 15rem;
 	background-color: red;
 	float: right;
@@ -93,6 +94,7 @@ html {
 		background-color: red;
 	}
 	.add_to_cart {
+		cursor: pointer;
 		float: none;
 		margin-left: 35%;
 	}

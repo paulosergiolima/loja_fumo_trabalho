@@ -24,19 +24,19 @@
 <body>
 	<%- include('header') %>
 		<main>
-			<img src="/imgs/<%= product.img_path%>" alt="" class="product_image">
+			<img src="/imgs/<%= product.img_path%>" alt="" class="product_image" id="product_image">
 			<div class="product">
-				<div class="product_name">
+				<div class="product_name" id="product_name">
 					<%= product.name %>
 				</div>
-				<div class="product_price">
+				<div class="product_price" id="product_price">
 					<%= product.price %>
 				</div>
-				<div class="product_desc">
+				<div class="product_desc" id="product_desc">
 					<%= product.desc %>
 				</div>
 			</div>
-			<div class="add_to_cart">
+			<div class="add_to_cart" onclick="addToCart()">
 				Compre agora!!!!
 			</div>
 		</main>
