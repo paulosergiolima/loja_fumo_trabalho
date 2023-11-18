@@ -153,5 +153,5 @@ header {
 
 .headerlink {
 	text-decoration: none;
-	color: white;
+	color: inherit;
 }

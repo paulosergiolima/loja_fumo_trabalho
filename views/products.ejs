@@ -21,14 +21,14 @@
 			<!-- Como um produto sera estruturado -->
 			<% for (product of products) { %>
 				<div class="product">
-					<a class="headerlink" href="products/<%= product.name %>"> <img class="product_image" src="/imgs/<%= product.img_path %>" alt=""> </a>
-					<a class="headerlink" href="products/<%= product.name %>"> <div class="product_name"><%= product.name %></div></a>
+					<a class="headerlink" href="/products/<%= product.name %>"> <img class="product_image" src="/imgs/<%= product.img_path %>" alt=""> </a>
+					<a class="headerlink" href="/products/<%= product.name %>"> <div class="product_name"><%= product.name %></div></a>
 					<div class="product_categories">
 						<% for (category of product.categories) { %>
-						<a class="headerlink" href="categories/<%= category.name %>"> <div class="product_category"><%= category.name %></div> </a>
+						<a class="headerlink" href="/categories/<%= category.name %>"> <div class="product_category"><%= category.name %></div> </a>
 						<% } %>
 					</div>
-					<div class="product_price">R$<%= product.price %></div>
+					<div class="product_price">R$<%= product.price.toFixed(2) %></div>
 				</div>
 				<% } %>
 
