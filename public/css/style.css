@@ -13,7 +13,7 @@ Para instruir trabalho a ser feito use TODO
 	position: sticky;
 	z-index: 1;
 	/*cores*/
-	background-color: pink;
+	background-color: rgb(172, 17, 215);
 	color: white;
 
 	height: 2.3rem;
@@ -29,12 +29,21 @@ Para instruir trabalho a ser feito use TODO
 }
 
 .option:hover {
-	background-color: #F2BFFF;
+	background-color: rgb(111, 8, 139);
+	cursor: pointer;
 }
+#user:hover {
+	height: 10rem;
+	max-height: 10rem;
+	transition: height 0.05s ease-in 0ms;
+	cursor: default;
+}
+
 
 .welcome {
 	font-size: 2rem;
-	background-color: lightgreen;
+	background-color: rgb(144, 213, 238);
+	/**TODO: Não esta criando uma borda**/
 	box-sizing: border-box;
 	border: 20px double snow;
 	width: 50%;
@@ -46,6 +55,7 @@ Para instruir trabalho a ser feito use TODO
 
 	position: relative;
 
+	text-align: center;
 }
 
 .list_of_products {
@@ -57,23 +67,17 @@ Para instruir trabalho a ser feito use TODO
 }
 
 .product {
-	margin-left: 0.3rem;
 	margin-right: 0.3rem;
 	overflow: auto;
 	display: inline-block;
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	max-width: 12rem;
-}
+	border-radius: 0.7rem;
 
-.big {
-	max-height: 20rem;
-	height: 20rem;
-	
 }
-
 
 html {
-	background-color: #BFECFF;
+	background-color: #dedddd;
 	box-sizing: border-box;
 }
 
@@ -85,7 +89,7 @@ html {
 .product_categories {
 	max-width: 100%;
 	text-align: center;
-	color: blue;
+	color: rgb(0, 152, 246);
 }
 
 .product_price {
@@ -94,11 +98,19 @@ html {
 
 .product_category {
 	text-align: center;
-	background-color: green;
+	background-color: rgb(127, 255, 127);
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
 	border-radius: 5rem;
+	
 	display: inline-block;
+}
+
+.user_option:hover {
+	cursor: pointer;
+	padding: 0rem 0.3rem;
+	background-color: rgb(146, 10, 184);
+	cursor: pointer;
 }
 
 .product_name {
@@ -116,13 +128,7 @@ header {
 	left: -2rem;
 	position: absolute;
 }
-.user_option:hover {
-	cursor: pointer;
-	background-color: deeppink;
-}
-
-
-.create_user_container {
+.create_user {
 	text-align: center;
 	position: fixed;
 	margin: -50vh 35vw;
@@ -130,7 +136,7 @@ header {
 	padding: 7.5vh 7.5vw;
 	z-index: 40;
 }
-/* vw vh supremacy */
+
 .shadow {
 	position: absolute;
 	z-index: 40;
@@ -141,21 +147,11 @@ header {
 	background-color: black;
 }
 
+.create_user.input {
+	width: 100vw;
+}
+
 .headerlink {
 	text-decoration: none;
 	color: inherit;
-}
-
-.close_button {
-	position: absolute;
-	border: none;
-	background: none;
-	cursor: pointer;
-	left: 90%;
-	bottom: 90%;
-
-}
-
-.create_user.input {
-	width: 100vw;
 }

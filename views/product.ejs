@@ -30,7 +30,7 @@
 					<%= product.name %>
 				</div>
 				<div class="product_price" id="product_price">
-					R$<%= product.price %>
+					R$<%= product.price.toFixed(2) %>
 				</div>
 				<div class="product_desc" id="product_desc">
 					<%= product.desc %>
@@ -40,7 +40,6 @@
 				Compre agora!!!!
 			</div>
 		</main>
-	<%- include('create_user') %>
 </body>
 
 </html>

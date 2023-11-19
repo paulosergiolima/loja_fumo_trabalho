@@ -45,7 +45,7 @@
     border-style: solid;
     border-left: 2px;
     border-right: 2px;
-    border-color: blue;
+    border-color: rgb(160, 12, 201);
     height: 8.4rem;
 }
 
@@ -103,14 +103,22 @@
     margin: -1.3rem 0rem 0rem 26rem;
 }
 
-.PrecoCompra{
+.Price{
     position: absolute;
-    margin: 1rem 0rem 0rem 62rem;
+    margin: 1rem 0rem 0rem 17rem;
     font-size: x-large;
 }
 
-.BotaoDeCompra{
+#Purchase{
     position: absolute;
-    margin: 3rem 0rem 0rem 63.5rem;
+    margin: 3rem 0rem 0rem 17rem;
     font-size: large;
+    padding: 1.5rem 8rem;
+    background-color: rgb(146, 10, 184);
+    color: rgb(230, 230, 230);
+    transition: background-color 0.15s ease-in 0ms;
+}
+
+#Purchase:hover{
+    background-color: rgb(125, 9, 157);
 }
