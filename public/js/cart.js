@@ -1,4 +1,5 @@
 const current_items = JSON.parse(localStorage.getItem("inCart"))
+const total_price = document.getElementById("total_price")
 const product_list = document.getElementById("cart_list")
 var complete_price = 0
 for (item of current_items) {
@@ -25,10 +26,22 @@ for (item of current_items) {
 				</table>
 			</li>
             `
-	complete_price = item.price + complete_price
-	console.log(typeof (product_base))
+	complete_price = parseFloat(item.price * item.quant )+ complete_price
 	product_list.insertAdjacentHTML("afterbegin", product_base)
 
+}
+total_price.innerHTML = `Preço da compra: R$ ${complete_price.toFixed(2)}`
+
+
+function changeComplete(){
+	const elements = document.getElementsByClassName("Cart_Product")
+	var total_price = 0
+	for (element of elements) {
+		console.log(element)
+		total_price = parseFloat(element.getElementsByClassName("PrecoTotal")[0].innerHTML.slice(2)) + total_price
+	}
+	const new_price = document.getElementById("total_price")
+	new_price.innerHTML = `Preço da compra: R$ ${total_price.toFixed(2)}`
 }
 
 function changeTotal(id) {
@@ -42,7 +55,6 @@ function changeTotal(id) {
 	if (real_quantity === 0) {
 		current_element.remove()
 		for (const i in current_items) {
-			console.log(name, current_items[i].name)
 			if (name === current_items[i].name) {
 				current_items.splice(i, 1)
 				localStorage.setItem("inCart", JSON.stringify(current_items))
@@ -58,6 +70,8 @@ function changeTotal(id) {
 		}
 	}
 	price_total.innerHTML = `R$${(real_price * real_quantity).toFixed(2)}`
+	changeComplete();
+
 
 }
 
