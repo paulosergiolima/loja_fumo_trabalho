@@ -53,7 +53,6 @@ app.get("/test", check)
 
 app.get("/", async (req,res) => {
 	const products = await prisma.product.findMany({})
-	console.log(products)
 	res.render('index', {products: products})
 }) 
 
@@ -83,7 +82,6 @@ app.get(`/products/:name`,async (req, res) => {
 			categories: true,
 		}
 	})
-	console.log(product)
 	res.render('product', {product: product})	
 })
 
@@ -109,7 +107,6 @@ app.get('/user', async(req, res) => {
 })
 app.get('/categories', async (req, res) => {
 	const categories = await prisma.category.findMany({})
-	console.log(categories)
 	res.render('categories', {categories: categories})
 })
 
@@ -154,13 +151,11 @@ app.post('/user', async (req, res) => {
 			//	}
 		//})
 	let jwtSecretKey = process.env.JWT_SECRET_KEY
-	console.log(jwtSecretKey)
 	let data = {
 		time: Date(),
 		userEmail: req.body.email,
 	}
 	const token = jwt.sign(data, jwtSecretKey)
-	console.log(token)
 	res.json(token)
 }) 
 
