@@ -36,14 +36,6 @@ async function createUser() {
     localStorage.setItem("myToken", realToken)
 
 }
-function showCreateUser() {
-    shadow.hidden = false
-    create_user_container.hidden = false
-}
-function close_create_user() {
-    shadow.hidden = true
-    create_user_container.hidden = true
-}
 function addToCart() {
     const product = {};
     var ArrayOfProducts;

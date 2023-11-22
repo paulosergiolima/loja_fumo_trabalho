@@ -34,6 +34,7 @@ total_price.innerHTML = `Preço da compra: R$ ${complete_price.toFixed(2)}`
 
 
 function changeComplete(){
+	console.log("Hallo")
 	const elements = document.getElementsByClassName("Cart_Product")
 	var total_price = 0
 	for (element of elements) {
@@ -58,7 +59,7 @@ function changeTotal(id) {
 			if (name === current_items[i].name) {
 				current_items.splice(i, 1)
 				localStorage.setItem("inCart", JSON.stringify(current_items))
-				return
+				
 			}
 		}
 	} else {

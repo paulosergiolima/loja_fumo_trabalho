@@ -6,6 +6,9 @@
 	<title>Fumoland</title>
 	<link rel="stylesheet" href="/css/style.css">
 	<script defer src="/js/script.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">	
 </head>
 
 <body>
@@ -14,7 +17,7 @@
 			<div class="welcome">Bem vindo a nossa loja.</div>
 			<div class="list_of_products">
 				<!-- Como um produto sera estruturado -->
-				<% if (products.lenght>= 2) { %>
+				<% if (products.length >= 2) { %>
 					<% for( let index=0; index < 2; index++ ) { %>
 						<div class="product">
 							<img class="product_image" src="/imgs/<%= products[index].img_path %>" alt="">
