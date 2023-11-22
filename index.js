@@ -53,6 +53,7 @@ app.get("/test", check)
 
 app.get("/", async (req,res) => {
 	const products = await prisma.product.findMany({})
+	console.log(products.length)
 	res.render('index', {products: products})
 }) 
 
