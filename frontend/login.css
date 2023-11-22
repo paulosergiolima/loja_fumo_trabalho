@@ -1,0 +1,71 @@
+.loginframe {
+    margin: 7rem 24rem;
+    background-color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1rem;
+    border-color: rgb(146, 10, 184);
+    max-width: 40rem;
+}
+
+.loginroll {
+    background-color: green;
+    padding: 5rem 5rem;
+}
+
+.logincol {
+    background-color: orange;
+    padding: 0rem 20rem;
+}
+
+.loginlogo {
+    margin: 0rem 0rem 0rem 10.5rem;
+    height: 10rem;
+}
+
+.Text1 {
+    margin: 0rem 0rem 0rem 3rem;
+    font-size: 2rem;
+}
+
+.Text2 {
+    margin: 1rem 0rem 0rem 3rem;
+    font-size: 1.25rem;
+}
+
+.loginemail {
+    margin: 0rem 0rem 0rem 3rem;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    width: 33rem;
+}
+
+.loginconfirm {
+    margin: 2rem 0rem 0rem 6rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    width: 27rem;
+    background-color: rgb(146, 10, 184);
+    color: rgb(230, 230, 230);
+    transition: background-color 0.2s ease-in 0ms;
+}
+
+.loginconfirm:hover {
+    background-color: rgb(61, 0, 80);
+}
+
+.newline {
+    padding: 4rem 0rem 0rem 0rem;
+}
+
+.newaccount {
+    cursor: pointer;
+    background-color: #80b1d2;
+    margin: 0rem 0rem 0rem 15rem;
+    padding: 1rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.loginradio{
+    margin: 0rem 0rem 0rem 3rem;
+}
