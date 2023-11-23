@@ -17,7 +17,6 @@ model user {
 	email String @unique
 	favorites product[]
 	bought_products bought_product[]
-	liked_products product[]	
 }
 
 model product {
@@ -30,7 +29,6 @@ model product {
 	bought bought_product[]
 	categories category[]
 	rating Int?
-	liked_by user[]
 }
 
 model bought_product {

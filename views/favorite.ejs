@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/script.js"></script>
+    <script defer src="/js/script.js"></script>
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/cartstyle.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <title>Fumoland - Favoritos</title>
 </head>
 <body>
     <%- include('header') %>
-    <p class="Cart_Title"></p>
+    <p class="Cart_Title"> Favoritos </p>
     <div class="list_of_products">
         <!-- Como um produto sera estruturado -->
         <% for (product of products) { %>

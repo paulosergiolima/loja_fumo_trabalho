@@ -1,5 +1,4 @@
 create_user_container = document.getElementById("create_user_container")
-shadow = document.getElementById("shadow")
 userList = document.getElementById("user_list")
 user = document.getElementById("user")
 function showUserOptions() {
@@ -33,9 +32,29 @@ async function createUser() {
     })
     const real_token = await token.json()
     console.log(real_token)
-    localStorage.setItem("myToken", realToken)
+    const cookie_str = `auth=${real_token}`
+    document.cookie = cookie_str
 
 }
+
+async function loginUser() {
+    const token = await fetch("/login", {
+        method: "POST",
+        body: JSON.stringify({
+            email: document.getElementById("userEmail").value,
+            password: document.getElementById("userPassword").value
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    console.log(token)
+    const real_token = await token.json()
+    console.log(real_token)
+    const cookie_str = `auth=${real_token}`
+    document.cookie = cookie_str
+}
+
 function addToCart() {
     const product = {};
     var ArrayOfProducts;

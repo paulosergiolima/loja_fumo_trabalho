@@ -39,7 +39,7 @@
                 <tr>
                     <td>
                         <form>
-                            <input class="loginemail" type="email" required>
+                            <input id="userEmail" class="loginemail" type="email" required>
                         </form>
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
                 <tr>
                     <td>
                         <form>
-                            <input class="loginemail" type="password" required>
+                            <input id="userPassword" class="loginemail" type="password" required>
                         </form>
                     </td>
                 </tr>
@@ -67,7 +67,7 @@
                 <tr>
                     <td>
                         <form>
-                            <input class="loginemail" type="text" required>
+                            <input id="notUserName" class="loginemail" type="text" required>
                         </form>
                     </td>
                 </tr>
@@ -118,7 +118,7 @@
                 <tr>
                     <td>
                         <form>
-                            <input class="loginconfirm" type="button" value="Confirmar">
+                            <input class="loginconfirm" type="button" value="Confirmar" onclick="createUser()">
                         </form>
                     </td>
                 </tr>
