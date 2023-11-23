@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+	<main>
+        <div class="loginframe">
+            <table class="logintable">
+                <tr>
+                    <td class="logincol">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="loginlogo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkEmzDAMBiRg_SNM7QmQaGFA0CzF202gJ6g&usqp=CAU">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="Text1">
+                            Fazer login.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="Text2">
+                            Email:
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="loginemail" type="email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="Text2">
+                            Senha:
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="loginemail" type="password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="loginconfirm" type="button" value="Confirmar">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form>
+                            <div class="newline"></div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="newaccount">Criar uma conta</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form>
+                            <div class="newline"></div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+	</main>
+</body>
+
+</html>
+<script>
+	create_user = document.getElementById("create_user")
+	shadow = document.getElementById("shadow")
+	userList = document.getElementById("user_list")
+	user = document.getElementById("user")
+	function showUserOptions() {
+		userList.hidden = false
+		user.classList.add("big")
+	}
+	function hideUserOptions() {
+		userList.hidden = true
+		user.classList.remove("big")
+	}
+	async function createUser() {
+		const body_value = JSON.stringify({
+			name: document.getElementById("notUserName").value,
+			email: document.getElementById("userEmail").value,
+			password: document.getElementById("userPassword").value
+		})
+		console.log(body_value)
+		console.log(`${document.getElementById("notUserName").value}`)
+		console.log(`${document.getElementById("userEmail").value}`)
+		console.log(`${document.getElementById("userPassword").value}`)
+		const token = await fetch("/user", {
+			method: "POST",
+			body: JSON.stringify({
+				name: document.getElementById("notUserName").value,
+				email: document.getElementById("userEmail").value,
+				password: document.getElementById("userPassword").value
+			}),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+		})
+		const real_token = await token.json()
+		console.log(real_token)
+		localStorage.setItem("myToken", realToken)
+
+	}
+	function showCreateUser() {
+		shadow.hidden = false
+		create_user.hidden = false
+	}
+</script>

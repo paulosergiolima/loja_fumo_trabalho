@@ -61,6 +61,14 @@ app.get("/cart", async (req, res) => {
 	res.render('cart')
 })
 
+app.get("/login", async (req, res) => {
+	res.render('login')
+})
+
+app.get("/signup", async (req, res) => {
+	res.render('signup')
+})
+
 
 
 app.get(`/products`, async (req, res) => {
@@ -129,6 +137,18 @@ app.get('/categories/:name', async (req, res) => {
 	res.render('category', {products: products, category: req.params.name})
 })
 
+app.get('/favorites', async (req, res) => {
+	const products = await prisma.product.findMany({
+		where: {
+			favorited_by: {
+				some: {
+					email: req.body.user
+				}	
+			} 
+		}
+	})
+	res.render('favorites', {products: products})
+})
 //Post requests
 app.post('/user', async (req, res) => {
 	console.log(req.body)
@@ -191,6 +211,25 @@ app.put('/categoryToProduct', async (req, res) => {
 	})
 	res.send(result)
 	return
+})
+
+app.put('/favoriteProduct', async (req, res) => {
+	const favorite = await prisma.user.update({
+		where: {
+			email: req.body.user,
+		},
+		data: {
+			favorites: {
+				connect: {
+					name: req.body.name
+				}
+			}
+		},
+		include: {
+			favorites: true
+		}
+	})
+	res.send(favorite)
 })
 
 

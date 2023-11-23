@@ -2,24 +2,28 @@
 .product {
 	display: block;
 	max-width: 15rem;
-	margin-left: 60%;
-	margin-top: 5%;
+	margin-left: 37rem;
+	margin-top: 2.7rem;
 	background-color: white;
 	padding: 4rem 4rem 2rem 4rem;
 	word-wrap: break-word;
 }
 
 .product_name {
+    position: absolute;
 	overflow: visible;
 	max-width: 15rem;
-	margin-bottom: 15%;
-	font-size: 3rem;
+    min-width: 15rem;
+	margin: 5rem 0rem 0rem 52.5rem;
+	font-size: 6rem;
 }
 
 .product_price {
 	overflow: auto;
 	max-width: 15rem;
-	margin-bottom: 15%;
+	min-width: 15rem;
+	margin: 17rem 0rem 0rem 51.5rem;
+	position: absolute;
 	font-size: 3rem;
 }
 
@@ -28,8 +32,16 @@
 	font-size: 1.5rem;
 	overflow: auto;
 	max-width: 15rem;
-	margin-bottom: 10%;
-	
+	min-width: 15rem;
+	margin: 21rem 0rem 0rem 53rem;
+	position: absolute;
+}
+
+.score {
+	position: absolute;
+	background-color: yellow;
+	padding: 2rem 10rem;
+	margin: 11rem 0rem 0rem 52.75rem;
 }
 
 .big {
@@ -44,10 +56,11 @@ html {
 
 .product_image {
 	position: absolute;
-	top: 18%;
-	left: 1%;
-	max-width: 30rem;
-	max-height: 30rem;
+	margin: 5rem 0rem 0rem 25rem;
+	max-width: 25rem;
+    min-width: 25rem;
+	max-height: 37.5rem;
+    min-height: 37.5rem;
 }
 
 .product_categories {
@@ -67,16 +80,24 @@ html {
 
 .add_to_cart {
 	cursor: pointer;
-	width: 15rem;
-	background-color: red;
-	float: right;
-	height: 5rem;
-	margin-top: 5%;
-	margin-right: 15%;
+	max-width: 15rem;
+	min-width: 15rem;
+	background-color: rgb(146, 10, 184);
+    color: rgb(230, 230, 230);
+	max-height: 5rem;
+	min-height: 5rem;
 	font-size: 1.7rem;
 	text-align: center;
 	vertical-align: text-bottom;
 	line-height: 5rem;
+	position: absolute;
+	margin: 37.5rem 0rem 0rem 53.5rem;
+	transition: all 0.1s linear 0ms;
+}
+
+.add_to_cart:hover {
+	background-color: rgb(178, 98, 200);
+	color: black;
 }
 
 @media (max-width: 1000px)  {
