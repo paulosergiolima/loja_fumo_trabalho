@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const fs = require('fs')
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
 const saltRounds = 10
 
@@ -19,46 +20,45 @@ dotenv.config()
 const port = process.env.PORT
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser())
 
 app.use(express.static('public'))
 
 let ejsOptions = {delimiter: '?'}
 
-const check = async function(req, res, next) {
-	let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
+const getUser = async function(req, res, next) {
 	try {
-		const token = req.headers.authorization.split(' ')[1] 
-		const verified = jwt.verify(token, jwtSecretKey)
-		console.log(verified)
-		if(verified) {
-			user = await prisma.user.findFirstOrThrow({
-				where: {
-					email: verified.email
-				}
-			})
-			req.body.user = verified.userEmail
-		}else {
-			throw Error
-		}
-	}catch {
-		req.body.user =  null
+		req.user = jwt.verify(req.cookies.auth, process.env.JWT_SECRET_KEY)
+	}catch(err) {
+		console.log(err)
+		res.send("Not signed in")
+		return
+
 	}
 	next()
 }
-//Adicione os endpoints que vão precisar de autenticação(provavelmente todos excetos de post)
-app.get("/products",check)
-app.get("/product/:userName", check)
-app.get("/test", check)
-
+app.use('/favorites', getUser)
 app.get("/", async (req,res) => {
-	const products = await prisma.product.findMany({})
+	const products = await prisma.product.findMany({
+		include: {
+			categories: true
+		}
+	})
 	console.log(products.length)
 	res.render('index', {products: products})
 }) 
 
 app.get("/cart", async (req, res) => {
 	res.render('cart')
+})
+
+app.get("/login", async (req, res) => {
+	res.render('login')
+})
+
+app.get("/signup", async (req, res) => {
+	res.render('signup')
 })
 
 
@@ -86,15 +86,18 @@ app.get(`/products/:name`,async (req, res) => {
 	res.render('product', {product: product})	
 })
 
-app.get('/user', async(req, res) => {
+app.post('/login', async(req, res) => {
+	console.log("it got here")
 	const user = await prisma.user.findFirst({
 		where: {
 			email: req.body.email
 		}
 	})
-	verified = bcrypt.compare(req.body.password, user.password)
+	const verified = await bcrypt.compare(req.body.password, user.password)
+	console.log(verified)
 	if (!verified) {
-		res.send("Not today")
+		console.log("You baddie")
+		res.json("false")
 		return
 	}
 	const jwtSecretKey = process.env.JWT_SECRET_KEY
@@ -103,7 +106,8 @@ app.get('/user', async(req, res) => {
 		userEmail: req.body.email,
 	}
 	const token = jwt.sign(data, jwtSecretKey)
-	res.send(token)
+	console.log("You are not baddie")
+	res.json(token)
 	return
 })
 app.get('/categories', async (req, res) => {
@@ -129,6 +133,22 @@ app.get('/categories/:name', async (req, res) => {
 	res.render('category', {products: products, category: req.params.name})
 })
 
+app.get('/favorites', async (req, res) => {
+	console.log(req.user.userEmail)
+	const products = await prisma.product.findMany({
+		where: {
+			favorited_by: {
+				some: {
+					email: req.user.userEmail 
+				}	
+			} 
+		},
+		include: {
+			categories: true
+		}
+	})
+	res.render('favorite', {products: products})
+})
 //Post requests
 app.post('/user', async (req, res) => {
 	console.log(req.body)
@@ -191,6 +211,25 @@ app.put('/categoryToProduct', async (req, res) => {
 	})
 	res.send(result)
 	return
+})
+
+app.put('/favoriteProduct', async (req, res) => {
+	const favorite = await prisma.user.update({
+		where: {
+			email: req.body.user,
+		},
+		data: {
+			favorites: {
+				connect: {
+					name: req.body.name
+				}
+			}
+		},
+		include: {
+			favorites: true
+		}
+	})
+	res.send(favorite)
 })
 
 

@@ -53,7 +53,7 @@ function changeTotal(id) {
 	const real_price = parseFloat(price.innerHTML.slice(2))
 	const real_quantity = parseInt(quantity.value)
 	const name = current_element.getElementsByClassName("Product_Name")[0].innerHTML.replace(/(\r\n|\n|\r|\t)/gm, "")
-	if (real_quantity === 0) {
+	if (real_quantity <= 0) {
 		current_element.remove()
 		for (const i in current_items) {
 			if (name === current_items[i].name) {

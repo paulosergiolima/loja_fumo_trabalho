@@ -17,7 +17,6 @@ model user {
 	email String @unique
 	favorites product[]
 	bought_products bought_product[]
-	
 }
 
 model product {
