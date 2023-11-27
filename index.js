@@ -40,7 +40,11 @@ const getUser = async function(req, res, next) {
 }
 app.use('/favorites', getUser)
 app.get("/", async (req,res) => {
-	const products = await prisma.product.findMany({})
+	const products = await prisma.product.findMany({
+		include: {
+			categories: true
+		}
+	})
 	console.log(products.length)
 	res.render('index', {products: products})
 }) 
@@ -93,7 +97,7 @@ app.post('/login', async(req, res) => {
 	console.log(verified)
 	if (!verified) {
 		console.log("You baddie")
-		res.send("Not today")
+		res.json("false")
 		return
 	}
 	const jwtSecretKey = process.env.JWT_SECRET_KEY
