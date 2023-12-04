@@ -52,6 +52,7 @@
 .Img {
     width: auto;
     height: 8rem;
+    margin-left: 5rem;
 }
 
 .Product_Name {
@@ -121,4 +122,8 @@
 
 #Purchase:hover{
     background-color: rgb(125, 9, 157);
+}
+
+.map {
+	float: right;
 }

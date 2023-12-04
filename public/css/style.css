@@ -8,20 +8,17 @@ Para instruir trabalho a ser feito use TODO
 	/* margin-left: -200px; */
 	/* margin-right: -200px; */
 	/**Isso vai fazer o header ser um header **/
-	margin-left: -0.5rem;
-	margin-top: -0.5rem;
 	position: sticky;
 	z-index: 1;
 	/*cores*/
 	background-color: rgb(172, 17, 215);
 	color: white;
-
 	height: 2.3rem;
-	width: 102%;
+	width: 100%;
 }
 .option {
-	padding-right: 2rem;
-	padding-left: 2rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
 	padding-top: 0.5rem;
 	display: inline-block;
 	/**TODO: Deve ter um jeito melhor de aumentar o tamanho do div criança para o div pai **/
@@ -120,10 +117,12 @@ html {
 body {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow: auto;
+	margin: 0px;
+	padding: 0px;
 }
 
 header {
-	width: 98.05vw;
+	width: 100%;
 }
 .user_list {
 	left: -2rem;
@@ -155,4 +154,5 @@ header {
 .headerlink {
 	text-decoration: none;
 	color: inherit;
+	cursor: pointer;
 }

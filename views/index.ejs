@@ -20,7 +20,7 @@
 				<% if (products.length>= 2) { %>
 					<% for( let index=0; index < 5; index++ ) { %>
 						<div class="product">
-							<img class="product_image" src="/imgs/<%= products[index].img_path %>" alt="">
+							<a class="headerlink" href="/products/<%= products[index].name %>"> <img class="product_image" src="/imgs/<%= products[index].img_path %>" alt=""> </a>
 							<div class="product_name">
 								<%= products[index].name %>
 							</div>
@@ -42,6 +42,7 @@
 
 			</div>
 		</main>
+		<%- include('footer') %>
 </body>
 
 </html>
