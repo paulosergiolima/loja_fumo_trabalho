@@ -1,14 +1,3 @@
-
-.product {
-	display: block;
-	max-width: 15rem;
-	margin-left: 37rem;
-	margin-top: 2.7rem;
-	background-color: white;
-	padding: 4rem 4rem 2rem 4rem;
-	word-wrap: break-word;
-}
-
 .product_name {
     position: absolute;
 	overflow: visible;
@@ -50,9 +39,6 @@
 	
 }
 
-html {
-	box-sizing: border-box;
-}
 
 .product_image {
 	position: absolute;
@@ -95,28 +81,37 @@ html {
 	transition: all 0.1s linear 0ms;
 }
 
+.favorites {
+	position: absolute;
+	margin: 30rem 0rem 0rem 55rem;
+}
+
 .add_to_cart:hover {
 	background-color: rgb(178, 98, 200);
 	color: black;
 }
 
 @media (max-width: 1000px)  {
-	.product {
-		margin-top: 100%;
-		margin-left: 25%;
+	main {
+		margin-right: 50rem;
 	}
-	
-	.product_image {
-		left: 15%;
+	header {
+		width: 190%;
 	}
-	
-	.main {
-		background-color: red;
-	}
-	.add_to_cart {
-		cursor: pointer;
-		float: none;
-		margin-left: 35%;
+	.option {
+		padding-left: 5rem;
+		padding-right: 5rem;
 	}
 }
 
+.star {
+	width: 5rem;
+	height: 5rem;
+	position: absolute;
+	display: block;
+	margin: 24rem 0rem 0rem 53rem;
+}
+
+.star:hover {
+	filter: invert(94%) sepia(71%) saturate(5662%) hue-rotate(356deg) brightness(110%) contrast(102%);
+}

@@ -14,11 +14,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/product.css">
 
 	<script defer src="/js/script.js"></script>
-    <title>Fumoland - <%= product.name %>
+	<title>Fumoland - <%= product.name %>
 	</title>
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
@@ -29,15 +29,20 @@
 		<main>
 			<img src="/imgs/<%= product.img_path%>" alt="" class="product_image" id="product_image">
 			<div class="score">Avaliação</div>
-				<div class="product_name" id="product_name">
-					<%= product.name %>
-				</div>
-				<div class="product_price" id="product_price">
-					R$<%= product.price.toFixed(2) %>
-				</div>
-				<div class="product_desc" id="product_desc">
-					<%= product.desc %>
-				</div>
+			<div class="container"></div>
+			<div class="product_name" id="product_name">
+				<%= product.name %>
+			</div>
+			<div class="product_price" id="product_price">
+				R$<%= product.price.toFixed(2) %>
+			</div>
+			<div class="product_desc" id="product_desc">
+				<%= product.desc %>
+			</div>
+			<div class="star headerlink">
+				<img onclick="favorite()" class="" src="/imgs/star.svg" alt="">
+			</div>
+			<div class="favorites">Favoritado por <%= favorites %> pessoas</div>
 			<div class="add_to_cart" onclick="addToCart()">
 				Compre agora!!!!
 			</div>

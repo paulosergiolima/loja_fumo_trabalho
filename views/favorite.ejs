@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script defer src="/js/script.js"></script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/cartstyle.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <title>Fumoland - Favoritos</title>
 </head>
+
 <body>
-    <%- include('header') %>
-    <p class="Cart_Title"> Favoritos </p>
-    <div class="list_of_products">
-        <!-- Como um produto sera estruturado -->
-        <% for (product of products) { %>
-            <div class="product">
-                <a class="headerlink" href="/products/<%= product.name %>"> <img class="product_image" src="/imgs/<%= product.img_path %>" alt=""> </a>
-                <a class="headerlink" href="/products/<%= product.name %>"> <div class="product_name"><%= product.name %></div></a>
-                <div class="product_categories">
-                    <% for (category of product.categories) { %>
-                    <a class="headerlink" href="/categories/<%= category.name %>"> <div class="product_category"><%= category.name %></div> </a>
+    <main>
+        <%- include('header') %>
+            <p class="Cart_Title"> Favoritos </p>
+            <div class="list_of_products">
+                <!-- Como um produto sera estruturado -->
+                <% for (product of products) { %>
+                    <div class="product">
+                        <a class="headerlink" href="/products/<%= product.name %>"> <img class="product_image"
+                                src="/imgs/<%= product.img_path %>" alt=""> </a>
+                        <a class="headerlink" href="/products/<%= product.name %>">
+                            <div class="product_name">
+                                <%= product.name %>
+                            </div>
+                        </a>
+                        <div class="product_categories">
+                            <% for (category of product.categories) { %>
+                                <a class="headerlink" href="/categories/<%= category.name %>">
+                                    <div class="product_category">
+                                        <%= category.name %>
+                                    </div>
+                                </a>
+                                <% } %>
+                        </div>
+                        <div class="product_price">R$<%= product.price.toFixed(2) %>
+                        </div>
+                    </div>
                     <% } %>
-                </div>
-                <div class="product_price">R$<%= product.price.toFixed(2) %></div>
             </div>
-            <% } %>
-    </div>
+    </main>
+    <%- include('footer') %>
 </body>
+
 </html>

@@ -1,3 +1,8 @@
+var form = document.getElementById("myForm");
+function handleForm(event) { event.preventDefault(); }
+form.addEventListener('submit', handleForm);
+
+
 var create_user_container = document.getElementById("create_user_container")
 var userList = document.getElementById("user_list")
 var user = document.getElementById("user")
@@ -31,9 +36,14 @@ async function createUser() {
         }
     })
     const real_token = await token.json()
+    if (real_token == "User already found") {
+        alert("Já existe um usário com esse email")
+        return
+    }
     console.log(real_token)
     const cookie_str = `auth=${real_token}`
     document.cookie = cookie_str
+    document.location.href = "http://localhost:8080/login"
 
 }
 
@@ -73,11 +83,11 @@ async function addToCart() {
     }
 
     if (current_items === null) {
-            ArrayOfProducts = [product]
-        } else {
-            current_items.push(product)
-            ArrayOfProducts = current_items
-        }
+        ArrayOfProducts = [product]
+    } else {
+        current_items.push(product)
+        ArrayOfProducts = current_items
+    }
     localStorage.setItem("inCart", JSON.stringify(ArrayOfProducts))
     console.log(ArrayOfProducts)
     await fetch("/buyProduct", {
@@ -109,10 +119,23 @@ if (document.cookie) {
     <a href="/favorites" class="headerlink"><li class="user_option">Favoritos</li></a>
     <li onclick="logOut()" class="user_option">Deslogar</li>
     `)
-}else {
+} else {
     user_list.insertAdjacentHTML("afterbegin", `
     <a href="/signup" class="headerlink"><li class="user_option" >Criar conta</li> </a>
     <a href="/login" class="headerlink"> <li class="user_option">Logar</li> </a>
     `)
 }
 
+async function favorite() {
+    const name = document.getElementById("product_name").innerHTML.trim()
+    const token = await fetch("/favoriteProduct", {
+        method: "PUT",
+        body: JSON.stringify({
+            name: name
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+
+}

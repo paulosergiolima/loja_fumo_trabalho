@@ -81,10 +81,12 @@ app.get(`/products/:name`,async (req, res) => {
 			name: name
 		},
 		include: {
+			favorited_by: true,
 			categories: true,
 		}
 	})
-	res.render('product', {product: product})	
+	console.log(product.favorited_by.length)
+	res.render('product', {product: product, favorites: product.favorited_by.length})	
 })
 
 app.post('/login', async(req, res) => {
@@ -152,12 +154,21 @@ app.get('/favorites', async (req, res) => {
 })
 
 app.get('/history', async (req, res) => {
-	const products = await prisma.bought_product
+	console.log("History")
 })
 //Post requests
 app.post('/user', async (req, res) => {
-	console.log(req.body)
 	var hash_password;
+	const already_found_user = await prisma.user.findFirst({
+		where: {
+			email: req.body.email,
+		}
+	})
+	if (already_found_user) {
+		res.json("User already found")
+		console.log("Hi")
+		return
+	}
 	bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
 		const user = await prisma.user.create({
 			data: {
@@ -168,14 +179,7 @@ app.post('/user', async (req, res) => {
 			}
 		})
 	})
-	//const user = await prisma.user.create({
-		//	data: {
-			//		email: req.body.email,
-			//		password: hash_password,
-			//		name: req.body.name
 
-			//	}
-		//})
 	let jwtSecretKey = process.env.JWT_SECRET_KEY
 	let data = {
 		time: Date(),
@@ -185,13 +189,13 @@ app.post('/user', async (req, res) => {
 	res.json(token)
 }) 
 app.post('/product', async (req, res) => { const new_product = await prisma.product.create({ data: {
-			img_path: req.body.img_path,
-			name: req.body.name,
-			price: parseInt(req.body.price),
-			desc: req.body.desc,
-			rating: req.body.rating,
-		}
-	})
+	img_path: req.body.img_path,
+	name: req.body.name,
+	price: parseInt(req.body.price),
+	desc: req.body.desc,
+	rating: req.body.rating,
+}
+})
 	res.send(new_product)
 })
 
@@ -238,9 +242,11 @@ app.post('/buyProduct', async (req, res) => {
 })
 
 app.put('/favoriteProduct', async (req, res) => {
+	const auth = req.cookies.auth  
+	const user = jwt.verify(auth, process.env.JWT_SECRET_KEY)
 	const favorite = await prisma.user.update({
 		where: {
-			email: req.body.user,
+			email: user.userEmail,
 		},
 		data: {
 			favorites: {
@@ -253,7 +259,7 @@ app.put('/favoriteProduct', async (req, res) => {
 			favorites: true
 		}
 	})
-	res.send(favorite)
+	res.json(favorite)
 })
 
 
