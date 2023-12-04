@@ -122,3 +122,6 @@
 #Purchase:hover{
     background-color: rgb(125, 9, 157);
 }
+.cart {
+	float: right;
+}

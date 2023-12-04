@@ -1,6 +1,6 @@
-create_user_container = document.getElementById("create_user_container")
-userList = document.getElementById("user_list")
-user = document.getElementById("user")
+var create_user_container = document.getElementById("create_user_container")
+var userList = document.getElementById("user_list")
+var user = document.getElementById("user")
 function showUserOptions() {
     userList.hidden = false
     user.classList.add("big")
@@ -56,7 +56,7 @@ async function loginUser() {
     document.location.href = "http://localhost:8080/"
 }
 
-function addToCart() {
+async function addToCart() {
     const product = {};
     var ArrayOfProducts;
     product.img_path = document.getElementById("product_image").src
@@ -80,6 +80,15 @@ function addToCart() {
         }
     localStorage.setItem("inCart", JSON.stringify(ArrayOfProducts))
     console.log(ArrayOfProducts)
+    await fetch("/buyProduct", {
+        method: "POST",
+        body: JSON.stringify({
+            product: product.name
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
 }
 
 function deleteCart() {
@@ -106,3 +115,4 @@ if (document.cookie) {
     <a href="/login" class="headerlink"> <li class="user_option">Logar</li> </a>
     `)
 }
+

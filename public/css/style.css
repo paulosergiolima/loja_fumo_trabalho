@@ -8,8 +8,6 @@ Para instruir trabalho a ser feito use TODO
 	/* margin-left: -200px; */
 	/* margin-right: -200px; */
 	/**Isso vai fazer o header ser um header **/
-	margin-left: -0.5rem;
-	margin-top: -0.5rem;
 	position: sticky;
 	z-index: 1;
 	/*cores*/
@@ -120,6 +118,7 @@ html {
 body {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow: auto;
+	margin: 0;
 }
 
 header {

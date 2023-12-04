@@ -33,11 +33,14 @@ model product {
 
 model bought_product {
 	id Int @id @default(autoincrement())
-	user user @relation(fields: [user_id], references: [id])
-	product product @relation(fields: [product_id], references: [id])
-	user_id Int
-	product_id Int
-	bought_in DateTime
+	user user @relation(fields: [user_email], references: [email])
+	product product @relation(fields: [product_name], references: [name])
+	user_email String 
+	product_name String
+	product_price Float
+	product_desc String
+	product_rating Int?
+	bought_in DateTime @default(now())
 }
 
 model category {

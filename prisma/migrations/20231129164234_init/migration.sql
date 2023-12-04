@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `bought_product` MODIFY `bought_in` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);

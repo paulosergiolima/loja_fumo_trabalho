@@ -1,0 +1,45 @@
+
+
+.rodape{
+	width: 100%;
+	background-color: #AC11D7;
+	height: 9rem;
+	padding: 0.01rem;
+	display: inline-block;
+	color: snow;
+	font-size: 1rem;
+	-webkit-text-stroke: 0.5px rgb(48, 1, 66);
+}
+
+.redes{
+	float: left;
+	display: flex;
+	margin-left: 2rem;
+}
+
+.link:link, .link:visited{
+	color: lightskyblue;
+	text-decoration: none;
+}
+
+.link:hover{
+		text-decoration: underline;
+}
+
+.links{
+	display: flex;
+	float: left;
+	margin-left: 2rem;
+}
+
+.onde{
+	float: left;
+	margin-left: 2rem;
+}
+.semponto{
+	list-style-type: none;
+}
+.condicoes{
+	float:right;
+	margin-right: 2rem;
+}

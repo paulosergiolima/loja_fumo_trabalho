@@ -39,13 +39,14 @@ const getUser = async function(req, res, next) {
 	next()
 }
 app.use('/favorites', getUser)
+app.use('/buyProduct', getUser)
 app.get("/", async (req,res) => {
 	const products = await prisma.product.findMany({
 		include: {
 			categories: true
 		}
 	})
-	console.log(products.length)
+	console.log(req.user)
 	res.render('index', {products: products})
 }) 
 
@@ -149,6 +150,10 @@ app.get('/favorites', async (req, res) => {
 	})
 	res.render('favorite', {products: products})
 })
+
+app.get('/history', async (req, res) => {
+	const products = await prisma.bought_product
+})
 //Post requests
 app.post('/user', async (req, res) => {
 	console.log(req.body)
@@ -179,10 +184,7 @@ app.post('/user', async (req, res) => {
 	const token = jwt.sign(data, jwtSecretKey)
 	res.json(token)
 }) 
-
-app.post('/product', async (req, res) => {
-	const new_product = await prisma.product.create({
-		data: {
+app.post('/product', async (req, res) => { const new_product = await prisma.product.create({ data: {
 			img_path: req.body.img_path,
 			name: req.body.name,
 			price: parseInt(req.body.price),
@@ -210,6 +212,28 @@ app.put('/categoryToProduct', async (req, res) => {
 		}
 	})
 	res.send(result)
+	return
+})
+
+app.post('/buyProduct', async (req, res) => {
+	const user = await prisma.user.findFirst({
+		where: {
+			email: req.user.userEmail
+		}
+	})
+	const product = await prisma.product.findFirst({
+		where: {
+			name: req.body.product
+		}
+	})
+	const bought_product = await prisma.bought_product.create({
+		data: {
+			user_email: req.user.userEmail,
+			product_name: product.name,
+		}	
+
+	})
+	res.json(bought_product)
 	return
 })
 

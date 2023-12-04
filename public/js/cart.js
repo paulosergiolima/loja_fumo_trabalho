@@ -26,14 +26,14 @@ for (item of current_items) {
 				</table>
 			</li>
             `
-	complete_price = parseFloat(item.price * item.quant )+ complete_price
+	complete_price = parseFloat(item.price * item.quant) + complete_price
 	product_list.insertAdjacentHTML("afterbegin", product_base)
 
 }
 total_price.innerHTML = `Preço da compra: R$ ${complete_price.toFixed(2)}`
 
 
-function changeComplete(){
+function changeComplete() {
 	console.log("Hallo")
 	const elements = document.getElementsByClassName("Cart_Product")
 	var total_price = 0
@@ -59,7 +59,7 @@ function changeTotal(id) {
 			if (name === current_items[i].name) {
 				current_items.splice(i, 1)
 				localStorage.setItem("inCart", JSON.stringify(current_items))
-				
+
 			}
 		}
 	} else {
@@ -76,3 +76,24 @@ function changeTotal(id) {
 
 }
 
+var initialCoordinates = [-22.1187, -51.3913];
+var initialZoomLevel = 13;
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+L.Control.geocoder().addTo(map);
+
+L.Routing.control({
+	waypoints: [
+		L.latLng(-22.1252, -51.412),
+		L.latLng(-22.1252, -51.412)
+	],
+	routeWhileDragging: true,
+	geocoder: L.Control.Geocoder.nominatim()
+}).addTo(map);
+const var1 = map.locate.once({ setView: true })
+	.on('locationerror', function (e) {
+		console.log(e);
+		alert("Location access has been denied.");
+	});
