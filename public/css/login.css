@@ -1,5 +1,5 @@
 .loginframe {
-    margin: 7rem 24rem;
+    margin: 7rem 32vw;
     background-color: #ffffff;
     border-width: 1px;
     border-style: solid;
@@ -20,7 +20,7 @@
 }
 
 .loginlogo {
-    margin: 0rem 0rem 0rem 10.5rem;
+    margin: 0rem 0rem 0rem 15.5rem;
     height: 10rem;
 }
 
@@ -69,4 +69,9 @@
 
 .loginradio{
     margin: 0rem 0rem 0rem 3rem;
+}
+@media (max-width: 700px) {
+	.loginframe {
+		margin: 0;
+	}
 }

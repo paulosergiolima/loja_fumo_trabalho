@@ -43,3 +43,9 @@
 	float:right;
 	margin-right: 2rem;
 }
+
+@media (max-width: 700px) {
+	.onde {
+		float: none;
+	}
+}

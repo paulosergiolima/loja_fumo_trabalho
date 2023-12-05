@@ -1,8 +1,3 @@
-var form = document.getElementById("myForm");
-function handleForm(event) { event.preventDefault(); }
-form.addEventListener('submit', handleForm);
-
-
 var create_user_container = document.getElementById("create_user_container")
 var userList = document.getElementById("user_list")
 var user = document.getElementById("user")
@@ -13,38 +8,6 @@ function showUserOptions() {
 function hideUserOptions() {
     userList.hidden = true
     user.classList.remove("big")
-}
-async function createUser() {
-    const body_value = JSON.stringify({
-        name: document.getElementById("notUserName").value,
-        email: document.getElementById("userEmail").value,
-        password: document.getElementById("userPassword").value
-    })
-    console.log(body_value)
-    console.log(`${document.getElementById("notUserName").value}`)
-    console.log(`${document.getElementById("userEmail").value}`)
-    console.log(`${document.getElementById("userPassword").value}`)
-    const token = await fetch("/user", {
-        method: "POST",
-        body: JSON.stringify({
-            name: document.getElementById("notUserName").value,
-            email: document.getElementById("userEmail").value,
-            password: document.getElementById("userPassword").value
-        }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-    const real_token = await token.json()
-    if (real_token == "User already found") {
-        alert("Já existe um usário com esse email")
-        return
-    }
-    console.log(real_token)
-    const cookie_str = `auth=${real_token}`
-    document.cookie = cookie_str
-    document.location.href = "http://localhost:8080/login"
-
 }
 
 async function loginUser() {
@@ -60,10 +23,14 @@ async function loginUser() {
     })
     console.log(token)
     const real_token = await token.json()
+    if(real_token == "Usuário não existe") {
+        alert("Usuário ou senha incorretos")
+        return
+    }
     console.log(real_token)
     const cookie_str = `auth=${real_token}`
     document.cookie = cookie_str
-    document.location.href = "http://localhost:8080/"
+    document.location.href = "/"
 }
 
 async function addToCart() {
@@ -111,7 +78,7 @@ function checkLogin() {
 
 function logOut() {
     document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    location.reload()
+    document.location.href = '/'
 }
 const user_list = document.getElementById("user_list")
 if (document.cookie) {

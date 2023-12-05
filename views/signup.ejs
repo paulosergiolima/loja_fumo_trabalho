@@ -5,7 +5,8 @@
 <head>
 	<link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/login.css">
-    <script src="/js/script.js"></script>
+    <script defer src="/js/script.js"></script>
+    <script defer src="/js/sign.js"></script>
 </head>
 
 <body>
@@ -38,8 +39,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <form id="myForm">
-                            <input id="userEmail" class="loginemail" type="email" required>
+                        <form id="myForm" method="post" action="/user">
+                            <input id="userEmail" class="loginemail" type="email" name="email" required>
                         
                     </td>
                 </tr>
@@ -53,7 +54,7 @@
                 <tr>
                     <td>
                         
-                            <input id="userPassword" class="loginemail" type="password" required>
+                            <input id="userPassword" class="loginemail" name="password" type="password" required>
                         
                     </td>
                 </tr>
@@ -67,7 +68,7 @@
                 <tr>
                     <td>
                         
-                            <input id="notUserName" class="loginemail" type="text" required>
+                            <input id="notUserName" name="username" class="loginemail" type="text" required>
                         
                     </td>
                 </tr>
@@ -81,7 +82,7 @@
                 <tr>
                     <td>
                         
-                            <input class="loginemail" type="text" required>
+                            <input class="loginemail" name="name" type="text" required>
                         
                     </td>
                 </tr>
@@ -95,9 +96,9 @@
                 <tr>
                     <td>
                         <div class="loginradio">
-                            <input type="radio">Masculino
-                            <input type="radio">Feminino
-                            <input type="radio">Outro
+                            <input name="gender" type="radio">Masculino
+                            <input name="gender" type="radio">Feminino
+                            <input name="gender" type="radio">Outro
                        </div>
                     </td>
                 </tr>
@@ -111,14 +112,14 @@
                 <tr>
                     <td>
                        
-                            <input class="loginemail" type="tel" placeholder = "(99) 9999-9999" pattern = "(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"" required>
+                            <input class="loginemail" type="tel" placeholder = "(99) 9999-9999" pattern = "(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" required>
                        
                     </td>
                 </tr>
                 <tr>
                     <td>
                         
-                            <input class="loginconfirm" type="submit" value="Confirmar" onclick="createUser()">
+                            <input class="loginconfirm" type="submit" value="Confirmar">
                         
                     </td>
                 </tr>

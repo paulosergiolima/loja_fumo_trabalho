@@ -96,6 +96,10 @@ app.post('/login', async(req, res) => {
 			email: req.body.email
 		}
 	})
+	if(user == null) {
+		res.json("Usuário não existe")
+		return
+	}
 	const verified = await bcrypt.compare(req.body.password, user.password)
 	console.log(verified)
 	if (!verified) {
@@ -158,6 +162,7 @@ app.get('/history', async (req, res) => {
 })
 //Post requests
 app.post('/user', async (req, res) => {
+	console.log("Why")
 	var hash_password;
 	const already_found_user = await prisma.user.findFirst({
 		where: {
@@ -170,6 +175,7 @@ app.post('/user', async (req, res) => {
 		return
 	}
 	bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
+		console.log(req.body.email, req.body.hash, req.body.password)
 		const user = await prisma.user.create({
 			data: {
 				email: req.body.email,

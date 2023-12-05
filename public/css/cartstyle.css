@@ -127,3 +127,16 @@
 .map {
 	float: right;
 }
+
+@media (max-width: 700px)  {
+	main {
+		margin-right: 50rem;
+	}
+	header {
+		width: 190%;
+	}
+	.option {
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+}

@@ -16,7 +16,6 @@ model user {
 	password String
 	email String @unique
 	favorites product[]
-	bought_products bought_product[]
 }
 
 model product {
@@ -26,22 +25,11 @@ model product {
 	price Float  
 	desc String
 	favorited_by user[]
-	bought bought_product[]
 	categories category[]
 	rating Int?
 }
 
-model bought_product {
-	id Int @id @default(autoincrement())
-	user user @relation(fields: [user_email], references: [email])
-	product product @relation(fields: [product_name], references: [name])
-	user_email String 
-	product_name String
-	product_price Float
-	product_desc String
-	product_rating Int?
-	bought_in DateTime @default(now())
-}
+
 
 model category {
 	id Int @id @default(autoincrement())
